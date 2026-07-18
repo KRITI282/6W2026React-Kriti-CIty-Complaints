@@ -1,6 +1,6 @@
 export class City {
     name = ""
-    imageURL = ""
+    imageUrl = ""
     status = true //true or false
     createdAt = Date.now()
 

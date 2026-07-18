@@ -9,7 +9,7 @@ class CityService {
         // console.log(data);
         const newCity = new City()
         newCity.name = data.name
-        newCity. imageURL = data.image
+        newCity. imageUrl = data.imageUrl
  
         const docRef = await addDoc(collection(db, dbPath), {
             ...newCity

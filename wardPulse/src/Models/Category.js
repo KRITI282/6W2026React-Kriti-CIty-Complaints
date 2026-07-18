@@ -1,6 +1,8 @@
 export class Category {
-    name = ""
-    imageUrl = ""
-    status = true
+    name =""
+    imageUrl =""
     createdAt = Date.now()
+    status = true
 }
+
+

@@ -9,14 +9,13 @@ class CategoryService {
         // console.log(data);
         const newCategory = new Category()
         newCategory.name = data.name
-        newCategory.imageUrl = data.image
+        newCategory.imageUrl = data.imageUrl
  
         const docRef = await addDoc(collection(db, dbPath), {
             ...newCategory
         })
         return newCategory
     }
-
     async all() {
         const querySnapshot = await getDocs(collection(db, dbPath));
         var categories = []
