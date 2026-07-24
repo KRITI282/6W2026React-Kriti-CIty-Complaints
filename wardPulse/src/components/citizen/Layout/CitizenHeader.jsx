@@ -31,6 +31,10 @@ export default function CitizenHeader() {
 
                 </li>
                 <li>
+                  <Link to="form"> Complaint Form</Link>
+
+                </li>
+                <li>
                   <Link to="login">Login</Link>
 
                 </li>
@@ -38,72 +42,7 @@ export default function CitizenHeader() {
                   <Link to="register">Register</Link>
 
                 </li>
-                <li className="dropdown">
-                  <Link to="gallery">
-                    <span>Gallery</span>{" "}
-                    <i className="bi bi-chevron-down toggle-dropdown" />
-                  </Link>
-
-                  <ul>
-                    <li>
-                      <Link to="gallery">Nature</Link>
-
-                    </li>
-                    <li>
-                      <Link to="gallery">People</Link>
-
-                    </li>
-                    <li>
-                      <Link to="gallery">Architecture</Link>
-
-                    </li>
-                    <li>
-                      <Link to="gallery">Animals</Link>
-
-                    </li>
-                    <li>
-                      <Link to="gallery">Sports</Link>
-
-                    </li>
-                    <li>
-                      <Link to="gallery">Travel</Link>
-
-                    </li>
-                    <li className="dropdown">
-                      <Link to="#">
-                        <span>Deep Dropdown</span>{" "}
-                        <i className="bi bi-chevron-down toggle-dropdown" />
-                      </Link>
-
-                      <ul>
-                        <li>
-                          <Link to="#">Deep Dropdown 1</Link>
-
-                        </li>
-                        <li>
-                          <Link to="#">Deep Dropdown 2</Link>
-
-                        </li>
-                        <li>
-                          <Link to="#">Deep Dropdown 3</Link>
-
-                        </li>
-                        <li>
-                          <Link to="#">Deep Dropdown 4</Link>
-
-                        </li>
-                        <li>
-                          <Link to="#">Deep Dropdown 5</Link>
-
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <Link to="services">Services</Link>
-
-                </li>
+               
                 <li>
                   <Link to="contact">Contact</Link>
 

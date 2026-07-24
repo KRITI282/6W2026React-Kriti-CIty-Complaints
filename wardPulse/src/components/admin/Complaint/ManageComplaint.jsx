@@ -4,7 +4,6 @@ import { PacmanLoader } from "react-spinners";
 import ComplaintService from "../../../services/ComplaintService"
 import CategoryService from "../../../services/CategoryService";
 // import Swal from 'sweetalert2'
-// About page component
 export default function ManageComplaint() {
     const override = {
         display: "block",
@@ -149,14 +148,14 @@ export default function ManageComplaint() {
 
                                                     <th scope="col">#</th>
                                                     <th scope="col">UserId</th>
-                                                    <th scope="col">cityId</th>
-                                                    <th scope="col">categoryId</th>
-                                                    <th scope="col">title</th>
-                                                    <th scope="col"> description</th>
-                                                    <th scope="col">complaintImageUrl</th>
-                                                    <th scope="col">  resolutionProofUrl</th>
-                                                    <th scope="col"> complaintStatus</th>
-                                                    <th scope="col">adminRemark</th>
+                                                    <th scope="col">CityId</th>
+                                                    <th scope="col">CategoryId</th>
+                                                    <th scope="col">Title</th>
+                                                    <th scope="col">Description</th>
+                                                    <th scope="col">ComplaintImageUrl</th>
+                                                    <th scope="col">ResolutionProofUrl</th>
+                                                    <th scope="col">ComplaintStatus</th>
+                                                    <th scope="col">AdminRemark</th>
 
                                                     <th scope="col">Action</th>
                                                 </tr>

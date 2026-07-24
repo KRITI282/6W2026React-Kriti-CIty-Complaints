@@ -38,40 +38,40 @@ export default function ManageUser() {
 
 
 
-    // async function deleteCategory(id) {
-    //     try {
+    async function deleteCategory(id) {
+        try {
 
-    //         Swal.fire({
-    //             title: "Are you sure?",
-    //             text: "You won't be able to revert this!",
-    //             icon: "warning",
-    //             showCancelButton: true,
-    //             confirmButtonColor: "#3085d6",
-    //             cancelButtonColor: "#d33",
-    //             confirmButtonText: "Yes, delete it!"
-    //         }).then(async (result) => {
-    //             if (result.isConfirmed) {
-    //                 setLoading(true)
-    //                 let res = await CategoryService.delete(id)
-    //                 Swal.fire({
-    //                     title: "Deleted!",
-    //                     text: "Your file has been deleted.",
-    //                     icon: "success"
-    //                 });
-    //                 getAllUser()
-    //             }
-    //         });
-    //     }
-    //     catch (error) {
-    //         console.log(error);
-    //     }
-    //     finally {
-    //         setLoading(false)
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    setLoading(true)
+                    let res = await CategoryService.delete(id)
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                    getAllUser()
+                }
+            });
+        }
+        catch (error) {
+            console.log(error);
+        }
+        finally {
+            setLoading(false)
 
-    //     }
+        }
 
 
-    // }
+    }
 
 
 
@@ -128,9 +128,6 @@ export default function ManageUser() {
                                         <table className="table">
                                             <thead>
                                                 <tr>
-
-    
-name = "" email = "" phone = "" address = ""profileImage = ""userType = "user
                                                     <th scope="col">#</th>
                                                     <th scope="col">name</th>
                                                     <th scope="col"> email</th>

@@ -5,7 +5,7 @@ export default function Contact()
     return(
     <>
     
-    <>
+  
   {/* Page Title */}
   <div className="page-title" >
     <div className="heading">
@@ -134,7 +134,6 @@ export default function Contact()
 
     
     
-        </>
 
     )
 }

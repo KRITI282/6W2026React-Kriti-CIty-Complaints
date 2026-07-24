@@ -8,7 +8,7 @@ class CityService {
     async add(data) {
         // console.log(data);
         const newCity = new City()
-        newCity.name = data.name
+        newCity4.name = data.name
         newCity. imageUrl = data.imageUrl
  
         const docRef = await addDoc(collection(db, dbPath), {

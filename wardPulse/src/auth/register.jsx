@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import UserService from "../services/UserService";
+import { Link } from "react-router-dom";
 
 function Register() {
     const [name, setName] = useState("")
@@ -39,109 +40,142 @@ function Register() {
 
     }
 
-    return (
-
-        <>
-            {/* Single Page Header start */}
-            <div className="container-fluid page-header py-5">
-                <h1 className="text-center text-white display-6">Register</h1>
-                <ol className="breadcrumb justify-content-center mb-0">
-                    <li className="breadcrumb-item">
-                        <a href="#">Home</a>
-                    </li>
-                    <li className="breadcrumb-item">
-                        <a href="#">Pages</a>
-                    </li>
-                    <li className="breadcrumb-item active text-white">Contact</li>
-                </ol>
+  {
+    return(
+    <>
+    
+  
+  {/* Page Title */}
+  <div className="page-title" >
+    <div className="heading">
+      <div className="container">
+        <div className="row d-flex justify-content-center text-center">
+          <div className="col-lg-8">
+            <h1>Register</h1>
+            <p className="mb-0">
+              Odio et unde deleniti. Deserunt numquam exercitationem. Officiis
+              quo odio sint voluptas consequatur ut a odio voluptatem. Sit
+              dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit
+              quaerat ipsum dolorem.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav className="breadcrumbs">
+      <div className="container">
+        <ol>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li className="current">Contact</li>
+        </ol>
+      </div>
+    </nav>
+  </div>
+  {/* End Page Title */}
+  {/* Contact Section */}
+  <section id="contact" className="contact section">
+    <div className="container">
+      <div className="info-wrap" >
+        <div className="row gy-5">
+          <div className="col-lg-4">
+            <div className="info-item d-flex align-items-center">
+              <i className="bi bi-geo-alt flex-shrink-0" />
+              <div>
+                <h3>Location</h3>
+                <p>A108 Adam Street, New York, NY 535022</p>
+              </div>
             </div>
-
-            <div className="container-fluid contact py-5">
-                <div className="container py-5">
-                    <div className="p-5 bg-light rounded">
-                        <div className="row g-4">
-                            <div className="col-12">
-                                <div className="text-center mx-auto" style={{ maxWidth: 700 }}>
-                                    <h1 className="text-primary">Create Your Account</h1>
-
-                                </div>
-                            </div>
-
-                            <div className="col-lg-8 offset-2">
-                                <form onSubmit={submit} className="">
-
-                                    <div className="row">
-                                        <div className="col-md">
-                                            <input
-                                                type="text"
-                                                className="w-100 form-control border-0 py-3 mb-4"
-                                                required
-                                                placeholder="Enter Your Name"
-                                                value={name}
-                                                onChange={(e) => {
-                                                    setName(e.target.value)
-                                                }}
-                                            />
-                                        </div>
-                                        <div className="col-md">
-
-                                            <input
-                                                type="number"
-                                                className="w-100 form-control border-0 py-3 mb-4"
-                                                required
-                                                placeholder="Enter Your Phone"
-                                                value={contact}
-                                                onChange={(e) => {
-                                                    setContact(e.target.value)
-                                                }}
-                                            />
-                                        </div>
-                                    </div>
-
-
-                                    <input
-                                        type="email"
-                                        className="w-100 form-control border-0 py-3 mb-4"
-                                        value={email}
-                                        onChange={(e) => {
-                                            setEmail(e.target.value)
-                                        }}
-                                        required
-                                        placeholder="Enter Your Email"
-                                    />
-
-
-
-                                    <input
-                                        type="password"
-                                        className="w-100 form-control border-0 py-3 mb-4"
-                                        value={password}
-                                        onChange={(e) => {
-                                            setPassword(e.target.value)
-                                        }}
-                                        placeholder="Enter Your Password"
-                                        required
-                                    />
-                                    <button
-                                        className="w-100 btn form-control border-secondary py-3 bg-white text-primary "
-                                        type="submit"
-                                    >
-                                        {
-                                            loading ? " Saving .." : "Submit"
-                                        }
-                                    </button>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+          </div>
+          {/* End Info Item */}
+          <div className="col-lg-4">
+            <div className="info-item d-flex align-items-center">
+              <i className="bi bi-telephone flex-shrink-0" />
+              <div>
+                <h3>Call</h3>
+                <p>+1 5589 55488 55</p>
+              </div>
             </div>
-            {/* Contact End */}
-        </>
+          </div>
+          {/* End Info Item */}
+          <div className="col-lg-4">
+            <div className="info-item d-flex align-items-center">
+              <i className="bi bi-envelope flex-shrink-0" />
+              <div>
+                <h3>Email</h3>
+                <p>info@example.com</p>
+              </div>
+            </div>
+          </div>
+          {/* End Info Item */}
+        </div>
+      </div>
+      <form
+        action="forms/contact.php"
+        method="post"
+        className="php-email-form"
+        
+      >
+        <div className="row gy-4">
+          <div className="col-md-6">
+            <input
+              type="text"
+              name="name"
+              className="form-control"
+              placeholder="Your Name"
+              required=""
+            />
+          </div>
+          <div className="col-md-6 ">
+            <input
+              type="email"
+              className="form-control"
+              name="email"
+              placeholder="Your Email"
+              required=""
+            />
+          </div>
+          <div className="col-md-12">
+            <input
+              type="text"
+              className="form-control"
+              name="subject"
+              placeholder="Subject"
+              required=""
+            />
+          </div>
+          <div className="col-md-12">
+            <textarea
+              className="form-control"
+              name="message"
+              rows={6}
+              placeholder="Message"
+              required=""
+              defaultValue={""}
+            />
+          </div>
+          <div className="col-md-12 text-center">
+            <div className="loading">Loading</div>
+            <div className="error-message" />
+            <div className="sent-message">
+              Your message has been sent. Thank you!
+            </div>
+            <button type="submit">Send Message</button>
+          </div>
+        </div>
+      </form>
+      {/* End Contact Form */}
+    </div>
+  </section>
+  {/* /Contact Section */}
+</>
 
+    
+    
 
     )
+}
 }
 
 export default Register

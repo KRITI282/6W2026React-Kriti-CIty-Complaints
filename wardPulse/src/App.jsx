@@ -5,7 +5,7 @@ import CitizenLayout from './components/citizen/Layout/CitizenLayout'
 import Home from './components/citizen/Pages/Home'
 import About from './components/citizen/Pages/About'
 import Contact from './components/citizen/Pages/Contact'
-import Services from './components/citizen/Pages/Services'
+
 import Layout from './components/admin/Layout/Layout'
 import Dashboard from './components/admin/Dashboard'
 import ManageCategory from './components/admin/Category/ManageCategory'
@@ -21,6 +21,7 @@ import ManageUser from './components/admin/User/ManageUser'
 import AddUser from './components/admin/User/AddUser'
 import Login from './auth/login'
 import Register from './auth/register'
+import Form from './components/citizen/Pages/Form'
 
 
 
@@ -36,7 +37,7 @@ export default function App()
 <Route path='/about' element={<About/>}/>
 
 <Route path='/contact' element={<Contact/>}/>
-<Route path='/services' element={<Services/>}/>
+<Route path='/form' element={<Form/>}/>
 <Route path='/login' element={<Login/>}/>
 <Route path='/register' element={< Register/>}/>
 </Route>

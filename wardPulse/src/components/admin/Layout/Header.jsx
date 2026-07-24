@@ -38,7 +38,6 @@ export default function Header() {
               <li >
                 <Link to="/admin/city">
                   <span>city</span>{" "}
-
                 </Link>
 
               </li>
