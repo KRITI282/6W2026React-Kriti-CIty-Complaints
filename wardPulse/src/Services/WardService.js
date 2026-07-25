@@ -1,11 +1,10 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc } from "firebase/firestore"
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore"
 import { Ward } from "../Models/Ward"
 import { db } from "../Firebase"
 import { toast } from "react-toastify"
-const dbPath="wards"
+const dbPath = "wards"
 
-class WardService 
-{
+class WardService {
     async add(data) {
         // console.log(data);
         const newWard = new Ward()
@@ -16,33 +15,44 @@ class WardService
         })
         return newWard
     }
-       async all() {
-            const querySnapshot = await getDocs(collection(db, dbPath));
-            var wards = []
-            querySnapshot.forEach((doc) => {
-                wards.push({ id: doc.id, ...doc.data() })
-            });
-            return wards;
+
+    async all() {
+        const querySnapshot = await getDocs(collection(db, dbPath));
+        var wards = []
+        querySnapshot.forEach((doc) => {
+            wards.push({ id: doc.id, ...doc.data() })
+        });
+        return wards;
+    }
+    async allByCity(cityId) {
+        const q = query(collection(db, dbPath), where("cityId", "==", cityId));
+        const querySnapshot = await getDocs(q);
+        var wards = []
+        querySnapshot.forEach((doc) => {
+            wards.push({ id: doc.id, ...doc.data() })
+        });
+        return wards;
+    }
+
+    async single(id) {
+        const docRef = doc(db, dbPath, id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            return { id: docSnap.id, ...docSnap.data() }
+
+        } else {
+            toast.error("No such document!");
+            console.log("No such document!");
+            return false
         }
-         async single(id) {
-                const docRef = doc(db, dbPath, id);
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    return { id: docSnap.id, ...docSnap.data() }
-        
-                } else {
-                    toast.error("No such document!");
-                    console.log("No such document!");
-                    return false
-                }
-            }
-        
-            async update(id, payload) {
-                const WardRef = doc(db, dbPath, id);
-                return await updateDoc(WardRef, payload);
-            }
-            async delete(id) {
-                return await deleteDoc(doc(db, dbPath, id));
-            }
+    }
+
+    async update(id, payload) {
+        const WardRef = doc(db, dbPath, id);
+        return await updateDoc(WardRef, payload);
+    }
+    async delete(id) {
+        return await deleteDoc(doc(db, dbPath, id));
+    }
 }
 export default new WardService();

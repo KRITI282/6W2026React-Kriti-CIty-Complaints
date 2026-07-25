@@ -5,181 +5,132 @@ import UserService from "../services/UserService";
 import { Link } from "react-router-dom";
 
 function Login() {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    let [loading, setLoading] = useState(false);
-    const nav = useNavigate()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  let [loading, setLoading] = useState(false);
+  const nav = useNavigate()
 
-    async function submit(e) {
-        try {
-            e.preventDefault()
-            setLoading(true)
-            let payload = {
-                email: email,
-                password: password
-            }
-            let res = await UserService.login(payload)
-            toast.success("Login Successful")
-            setLoading(false)
+  async function submit(e) {
+    try {
+      e.preventDefault()
+      setLoading(true)
+      let payload = {
+        email: email,
+        password: password
+      }
+      let res = await UserService.login(payload)
+      toast.success("Login Successful")
+      setLoading(false)
 
-            if (res.userType == "admin") {
-                nav("/admin")
-            }
-            else {
-                nav("/")
-            }
+      if (res.userType == "admin") {
+        nav("/admin")
+      }
+      else {
+        nav("/")
+      }
 
-        } catch (error) {
-            setLoading(false)
-            console.log(error);
-            toast.error(error.code)
-
-        }
-        finally {
-            setLoading(false)
-        }
-
+    } catch (error) {
+      setLoading(false)
+      console.log(error);
+      toast.error(error.code)
 
     }
+    finally {
+      setLoading(false)
+    }
 
-   {
-    return(
-    <>
-    
-  
-  {/* Page Title */}
-  <div className="page-title" >
-    <div className="heading">
-      <div className="container">
-        <div className="row d-flex justify-content-center text-center">
-          <div className="col-lg-8">
-            <h1>Login</h1>
-            <p className="mb-0">
-              Odio et unde deleniti. Deserunt numquam exercitationem. Officiis
-              quo odio sint voluptas consequatur ut a odio voluptatem. Sit
-              dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit
-              quaerat ipsum dolorem.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <nav className="breadcrumbs">
-      <div className="container">
-        <ol>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li className="current">Contact</li>
-        </ol>
-      </div>
-    </nav>
-  </div>
-  {/* End Page Title */}
-  {/* Contact Section */}
-  <section id="contact" className="contact section">
-    <div className="container">
-      <div className="info-wrap" >
-        <div className="row gy-5">
-          <div className="col-lg-4">
-            <div className="info-item d-flex align-items-center">
-              <i className="bi bi-geo-alt flex-shrink-0" />
-              <div>
-                <h3>Location</h3>
-                <p>A108 Adam Street, New York, NY 535022</p>
-              </div>
-            </div>
-          </div>
-          {/* End Info Item */}
-          <div className="col-lg-4">
-            <div className="info-item d-flex align-items-center">
-              <i className="bi bi-telephone flex-shrink-0" />
-              <div>
-                <h3>Call</h3>
-                <p>+1 5589 55488 55</p>
-              </div>
-            </div>
-          </div>
-          {/* End Info Item */}
-          <div className="col-lg-4">
-            <div className="info-item d-flex align-items-center">
-              <i className="bi bi-envelope flex-shrink-0" />
-              <div>
-                <h3>Email</h3>
-                <p>info@example.com</p>
-              </div>
-            </div>
-          </div>
-          {/* End Info Item */}
-        </div>
-      </div>
-      <form
-        action="forms/contact.php"
-        method="post"
-        className="php-email-form"
-        
-      >
-        <div className="row gy-4">
-          <div className="col-md-6">
-            <input
-              type="text"
-              name="name"
-              className="form-control"
-              placeholder="Your Name"
-              required=""
-            />
-          </div>
-          <div className="col-md-6 ">
-            <input
-              type="email"
-              className="form-control"
-              name="email"
-              placeholder="Your Email"
-              required=""
-            />
-          </div>
-          <div className="col-md-12">
-            <input
-              type="text"
-              className="form-control"
-              name="subject"
-              placeholder="Subject"
-              required=""
-            />
-          </div>
-          <div className="col-md-12">
-            <textarea
-              className="form-control"
-              name="message"
-              rows={6}
-              placeholder="Message"
-              required=""
-              defaultValue={""}
-            />
-          </div>
-          <div className="col-md-12 text-center">
-            <div className="loading">Loading</div>
-            <div className="error-message" />
-            <div className="sent-message">
-              Your message has been sent. Thank you!
-            </div>
-            <button type="submit">Send Message</button>
-          </div>
-        </div>
-      </form>
-      {/* End Contact Form */}
-    </div>
-  </section>
-  {/* /Contact Section */}
-</>
 
-    
-    
+  }
+
+  {
+    return (
+      <>
+
+
+        {/* Page Title */}
+        <div className="page-title" >
+          <div className="heading">
+            <div className="container">
+              <div className="row d-flex justify-content-center text-center">
+                <div className="col-lg-8">
+                  <h1>Login</h1>
+                  <p className="mb-0">
+                    Sign in to your account and manage your city complaints with ease.
+                    Access your dashboard, track updates, and stay connected with the
+                    latest service requests.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <nav className="breadcrumbs">
+            <div className="container">
+              <ol>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li className="current">Contact</li>
+              </ol>
+            </div>
+          </nav>
+        </div>
+        {/* End Page Title */}
+        {/* Contact Section */}
+        <section id="contact" className="contact section">
+          <div className="container">
+
+            <form className="php-email-form"  onSubmit={submit}>
+              <div className="row gy-4">
+                <div className="col-md-6 offset-md-3">
+                  <div className="row">
+                    <div className="col-md-12">
+                      <input
+                        type="email"
+                        name="email"
+                        value={email}
+                        className="form-control"
+                                                              placeholder="Enter Your Email" onChange={
+                                            (e) => {
+                                                setEmail(e.target.value)
+                                            }
+                                        }
+                        required=""
+                      />
+                    </div>
+                    <div className="col-md-12 my-4">
+                      <input
+                        type="password"
+                        className="form-control"
+                        name="password"
+                         value={password} onChange={(e) => {
+                                            setPassword(e.target.value)
+                                        }}
+                        placeholder="Your Password"
+                        required=""
+                      />
+                    </div>
+                    <div className="col-md-12 text-center">
+                      <button type="submit">Login</button>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </form>
+            {/* End Contact Form */}
+          </div>
+        </section>
+        {/* /Contact Section */}
+      </>
+
+
+
 
     )
-}   
+  }
 }
-        
+
 
 // Export for use in other files
 export default Login

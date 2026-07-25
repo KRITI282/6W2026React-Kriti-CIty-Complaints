@@ -22,55 +22,59 @@ import AddUser from './components/admin/User/AddUser'
 import Login from './auth/login'
 import Register from './auth/register'
 import Form from './components/citizen/Pages/Form'
+import Category from './components/citizen/Pages/Category'
+import City from './components/citizen/Pages/City'
+
+import Ward from './components/citizen/Pages/Ward'
+
+
+export default function App() {
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+          {/* citizen module routes */}
+          <Route path='/' element={<CitizenLayout />}>
+            <Route path='/' element={< Home />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/category' element={<Category />} />
+             <Route path='/City' element={<City />} />
+              <Route path='/Ward/:cityId' element={<Ward/>} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/form' element={<Form />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={< Register />} />
+          </Route>
+
+          <Route path='/admin' element={<Layout />}>
+
+            <Route index element={<Dashboard />} />
+            <Route path='Categories' element={<ManageCategory />} />
+            <Route path='category/add' element={<AddCategory />} />
+
+            <Route path='city' element={<ManageCity />} />
+            <Route path='city/add' element={<AddCity />} />
+
+            <Route path='wards' element={<ManageWard />} />
+            <Route path='Ward/add' element={<AddWard />} />
+
+            <Route path='complaints' element={<ManageComplaint />} />
+            <Route path='Complaint/add' element={<AddComplaint />} />
+
+            <Route path='users' element={<ManageUser />} />
+            <Route path='User/add' element={<AddUser />} />
+          </Route>
+
+
+        </Routes>
+        <ToastContainer />
 
 
 
-export default function App()
-{
-  return(
-<>
-<BrowserRouter>
-<Routes>
-  {/* citizen module routes */}
-<Route path='/' element={<CitizenLayout/>}>
-<Route path='/' element={< Home/>}/>
-<Route path='/about' element={<About/>}/>
 
-<Route path='/contact' element={<Contact/>}/>
-<Route path='/form' element={<Form/>}/>
-<Route path='/login' element={<Login/>}/>
-<Route path='/register' element={< Register/>}/>
-</Route>
-
-<Route path='/admin' element={<Layout/>}>
-
-<Route index element={<Dashboard/>}/>
-<Route path='Categories' element={<ManageCategory/>}/>
-<Route path='category/add' element={<AddCategory/>}/>
-
-<Route path='city' element={<ManageCity/>}/>
-<Route path='city/add' element={<AddCity/>}/>
-
-<Route path='wards' element={<ManageWard/>}/>
-<Route path='Ward/add' element={<AddWard/>}/>
-
-<Route path='complaints' element={<ManageComplaint/>}/>
-<Route path='Complaint/add' element={<AddComplaint/>}/>
-
-<Route path='users' element={<ManageUser/>}/>
-<Route path='User/add' element={<AddUser/>}/>
-</Route>
+      </BrowserRouter>
 
 
-</Routes>
-<ToastContainer/>
-
-
-
-
-</BrowserRouter>
-    
-    
     </>
   )
 }

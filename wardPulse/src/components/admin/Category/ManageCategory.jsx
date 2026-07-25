@@ -5,6 +5,7 @@ import CategoryService from "../../../Services/CategoryService"
 import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 Modal.setAppElement('#root');
 
@@ -152,18 +153,57 @@ export default function ManageCategory(){
 
     return (
         <>
-            <section id="hero" className="hero section">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                            <h1>Manage Category</h1>
-                           
-                        </div>
-                    </div>
-                </div>
-            </section>
+          <div className="container">
+        <div className="row d-flex justify-content-center text-center">
+          <div className="col-lg-8">
+                        <h1>Category</h1>
+                        <p className="mb-0">
+                            Manage complaint categories used across the application. Add, edit, or remove categories to
+                            organize complaints, improve reporting, and help citizens find the right submission type quickly.
+                        </p>
+          </div>
+        </div>
+      </div>
+    
+ 
+  
+         <div className="info-wrap offset-md-3 my-3 " >
+        <div className="row gy-5">
+          <div className="col-lg-4">
+            <div className="info-item d-flex align-items-center">
+              <i className="bi bi-geo-alt flex-shrink-0" />
+              <div>
+                <h3>Location</h3>
+                <p>A108 Adam Street, New York, NY 535022</p>
+              </div>
+            </div>
+          </div>
+          {/* End Info Item */}
+          <div className="col-lg-4">
+            <div className="info-item d-flex align-items-center">
+              <i className="bi bi-telephone flex-shrink-0" />
+              <div>
+                <h3>Call</h3>
+                <p>+1 5589 55488 55</p>
+              </div>
+            </div>
+          </div>
+          {/* End Info Item */}
+          <div className="col-lg-4">
+            <div className="info-item d-flex align-items-center">
+              <i className="bi bi-envelope flex-shrink-0" />
+              <div>
+                <h3>Email</h3>
+                <p>info@example.com</p>
+              </div>
+            </div>
+          </div>
+          {/* End Info Item */}
+        </div>
+      </div>
+          
 
-            <div className="container py-4">
+            <div className="container ">
                 <div className="px-4 py-2 bg-light rounded">
                     <div className="row mb-3">
                         <div className="col-md">

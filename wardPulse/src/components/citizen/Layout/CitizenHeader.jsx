@@ -30,10 +30,12 @@ export default function CitizenHeader() {
                   <Link to="about">About</Link>
 
                 </li>
-                <li>
-                  <Link to="form"> Complaint Form</Link>
+                 <li>
+                  <Link to="category">Complaint Categories</Link>
 
                 </li>
+                
+
                 <li>
                   <Link to="login">Login</Link>
 
