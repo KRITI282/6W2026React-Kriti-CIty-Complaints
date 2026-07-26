@@ -13,7 +13,7 @@ export default function CitizenHeader() {
             >
               {/* Uncomment the line below if you also wish to use an image logo */}
               {/* <img src="assets/img/logo.png" alt=""> */}
-
+<img src="public/assets/img/ChatGPT Image Jul 25, 2026, 10_27_12 PM.png" ></img>
               <h1 className="sitename">WardPulse</h1>
             </Link>
 
