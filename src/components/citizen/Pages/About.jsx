@@ -212,7 +212,7 @@ export default function About() {
                   </p>
                   <div className="profile mt-auto">
                     <img
-                      src="assets/img/testimonials/testimonials-3.jpg"
+                      src="/assets/img/testimonials/testimonials-3.jpg"
                       className="testimonial-img"
                       alt=""
                     />
