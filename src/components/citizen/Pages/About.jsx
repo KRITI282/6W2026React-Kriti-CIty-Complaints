@@ -58,6 +58,7 @@ export default function About() {
           <div className="row gy-4 justify-content-center">
             <div className="col-lg-4">
               <img src="/assets/img/abotu for wardpulse.jpg" className="img-fluid" alt="" />
+            <img src="/assets/img/abotu for wardpulse.jpg" className="img-fluid" alt="" />
             </div>
             <div className="col-lg-5 content">
               <h2>
