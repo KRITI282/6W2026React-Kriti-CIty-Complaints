@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import CategoryService from "../../../Services/CategoryService"
 import WardService from "../../../Services/WardService";
 import CityService from "../../../Services/CityService";
-import { data, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Form() {
 
   const [categories, setCategories] = useState([]);
   const [wards, setWards] = useState([])
-  const [Cities, setCities] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [data, setData] = useState({ categoryId: "", cityId: "" });
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -45,10 +46,7 @@ export default function Form() {
     fetchCities();
   }, []);
   const handleChange = (e) => {
-    setData((prev) => ({
-      ...prev,
-
-    }));
+    setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   return (
     <>

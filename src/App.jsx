@@ -21,11 +21,13 @@ import ManageUser from './components/admin/User/ManageUser'
 import AddUser from './components/admin/User/AddUser'
 import Login from './auth/login'
 import Register from './auth/register'
-import Form from './components/citizen/Pages/Form'
+
 import Category from './components/citizen/Pages/Category'
 import City from './components/citizen/Pages/City'
 
 import Ward from './components/citizen/Pages/Ward'
+import Form from './components/citizen/Pages/Form'
+
 
 
 export default function App() {
