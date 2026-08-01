@@ -121,13 +121,7 @@ export default function About() {
                   <div className="col md-4">
                     <div className="card" style={{ width: "18rem" }}>
                       <img src="public/assets/img/testimonials/testimonials-3.jpg" className="card-img-top" alt="..." />
-                      <div className="card-body">
-                        <h5 className="card-title">Kriti</h5>
-                        <p className="card-text">
-                          "Being able to upload photos with my complaint helped explain the issue clearly. The tracking feature gives confidence that the complaint has been received."
-                        </p>
-
-                      </div>
+                    
                     </div>
                   </div>
                   <div className="col md-4">
