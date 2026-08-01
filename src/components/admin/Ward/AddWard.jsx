@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { PacmanLoader } from "react-spinners";
-import WardService from "../../../services/WardService";
+import WardService from "../../../Services/WardService";
 
 export default function AddWard() {
     const override = {
