@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+    import ThemeButton from "./ThemeButton";
+
 
 export default function CitizenHeader() {
   return (
@@ -47,6 +49,16 @@ export default function CitizenHeader() {
                   <Link to="contact">Contact</Link>
 
                 </li>
+               
+
+
+<li>
+    <h2>WardPulse</h2>
+
+    <ThemeButton/>
+</li>
+
+
               </ul>
               <i className="mobile-nav-toggle d-xl-none bi bi-list" />
             </nav>
