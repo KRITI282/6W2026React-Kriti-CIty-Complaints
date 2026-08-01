@@ -1,5 +1,5 @@
 import { collection, addDoc, getDocs, doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
-import { Category } from "../models/Category";
+import { Category } from "../Models/Category";
 import { db } from "../Firebase";
 const dbPath = "categories"
 import { toast } from "react-toastify";
