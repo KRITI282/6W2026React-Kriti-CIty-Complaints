@@ -155,7 +155,23 @@ export default function Home() {
       }
 
       `}</style>
+import { useTheme } from "../context/ThemeContext";
 
+function ThemeButton(){
+
+    const {theme,toggleTheme}=useTheme();
+
+    return(
+
+        <button onClick={toggleTheme}>
+            {theme==="light" ? "🌙" : "☀️"}
+        </button>
+
+    );
+
+}
+
+export default ThemeButton;
       {/* HERO */}
 
       <section className="hero">
