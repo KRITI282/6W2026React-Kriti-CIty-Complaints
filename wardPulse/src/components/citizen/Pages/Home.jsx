@@ -340,6 +340,512 @@ export default function Home() {
         </div>
 
       </section>
+   
+  <>
+    {/* ================= HERO SECTION ================= */}
+
+   
+     <section className="how-section">
+
+      <div className="container">
+
+        <div className="section-title">
+
+          <h2>
+            How <span>WardPulse</span> Works
+          </h2>
+
+          <p>
+            Reporting civic issues has never been easier. Follow these simple
+            steps to submit and track your complaint.
+          </p>
+
+        </div>
+
+        <div className="row g-4">
+
+          <div className="col-lg-3 col-md-6">
+            <div className="step-card">
+              <div className="step-number">1</div>
+              <h4>Register</h4>
+              <p>Create your account securely.</p>
+            </div>
+          </div>
+
+          <div className="col-lg-3 col-md-6">
+            <div className="step-card">
+              <div className="step-number">2</div>
+              <h4>Submit Complaint</h4>
+              <p>Select category, ward and upload complaint details.</p>
+            </div>
+          </div>
+
+          <div className="col-lg-3 col-md-6">
+            <div className="step-card">
+              <div className="step-number">3</div>
+              <h4>Admin Review</h4>
+              <p>Municipal officials verify and assign your complaint.</p>
+            </div>
+          </div>
+
+          <div className="col-lg-3 col-md-6">
+            <div className="step-card">
+              <div className="step-number">4</div>
+              <h4>Resolved</h4>
+              <p>Track the complaint until it is successfully resolved.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    {/* ================= STATISTICS ================= */}
+
+    <section className="stats-section">
+
+      <div className="container">
+
+        <div className="section-title">
+
+          <h2>
+            WardPulse <span>Statistics</span>
+          </h2>
+
+          <p>
+            Building transparent, responsive, and citizen-friendly municipal
+            services.
+          </p>
+
+        </div>
+
+        <div className="row g-4">
+
+          <div className="col-lg-3 col-md-6">
+            <div className="stats-card">
+              <h1>1200+</h1>
+              <h5>Total Complaints</h5>
+              <p>Complaints registered successfully.</p>
+            </div>
+          </div>
+
+          <div className="col-lg-3 col-md-6">
+            <div className="stats-card">
+              <h1>980+</h1>
+              <h5>Resolved</h5>
+              <p>Issues resolved by municipal staff.</p>
+            </div>
+          </div>
+
+          <div className="col-lg-3 col-md-6">
+            <div className="stats-card">
+              <h1>32</h1>
+              <h5>Municipal Wards</h5>
+              <p>Serving wards across the city.</p>
+            </div>
+          </div>
+
+          <div className="col-lg-3 col-md-6">
+            <div className="stats-card">
+              <h1>95%</h1>
+              <h5>Citizen Satisfaction</h5>
+              <p>Positive feedback from users.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    {/* ================= WHY CHOOSE WARDPULSE ================= */}
+
+<section className="why-section">
+
+  <div className="container">
+
+    <div className="section-title">
+
+      <h2>
+        Why Choose <span>WardPulse?</span>
+      </h2>
+
+      <p>
+        WardPulse simplifies communication between citizens and municipal
+        authorities by making complaint reporting transparent, efficient,
+        and easy to use.
+      </p>
+
+    </div>
+
+    <div className="row g-4">
+
+      <div className="col-lg-4 col-md-6">
+
+        <div className="feature-card">
+
+          <div className="feature-icon">
+            ⚡
+          </div>
+
+          <h4>Quick Complaint Registration</h4>
+
+          <p>
+            Submit complaints in just a few clicks without lengthy paperwork.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div className="col-lg-4 col-md-6">
+
+        <div className="feature-card">
+
+          <div className="feature-icon">
+            📍
+          </div>
+
+          <h4>Ward-wise Tracking</h4>
+
+          <p>
+            Easily monitor complaints based on wards for faster resolution.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div className="col-lg-4 col-md-6">
+
+        <div className="feature-card">
+
+          <div className="feature-icon">
+            📢
+          </div>
+
+          <h4>Real-Time Updates</h4>
+
+          <p>
+            Receive status notifications whenever your complaint progresses.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div className="col-lg-4 col-md-6">
+
+        <div className="feature-card">
+
+          <div className="feature-icon">
+            🔒
+          </div>
+
+          <h4>Secure Platform</h4>
+
+          <p>
+            Your personal information and complaint details remain protected.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div className="col-lg-4 col-md-6">
+
+        <div className="feature-card">
+
+          <div className="feature-icon">
+            🏛️
+          </div>
+
+          <h4>Transparent Governance</h4>
+
+          <p>
+            Citizens can monitor complaint progress from submission to completion.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div className="col-lg-4 col-md-6">
+
+        <div className="feature-card">
+
+          <div className="feature-icon">
+            🌍
+          </div>
+
+          <h4>Smart City Initiative</h4>
+
+          <p>
+            Helping municipalities build cleaner, safer, and smarter communities.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+{/* ================= MUNICIPAL SERVICES ================= */}
+
+<section className="services-section">
+
+  <div className="container">
+
+    <div className="section-title">
+
+      <h2>
+        Municipal <span>Services</span>
+      </h2>
+
+      <p>
+        Explore the key civic services supported through WardPulse.
+      </p>
+
+    </div>
+
+    <div className="row g-4">
+
+      <div className="col-lg-3 col-md-6">
+        <div className="service-card">
+          <h4>🗑️ Garbage Collection</h4>
+        </div>
+      </div>
+
+      <div className="col-lg-3 col-md-6">
+        <div className="service-card">
+          <h4>🚧 Road Maintenance</h4>
+        </div>
+      </div>
+
+      <div className="col-lg-3 col-md-6">
+        <div className="service-card">
+          <h4>💡 Street Lighting</h4>
+        </div>
+      </div>
+
+      <div className="col-lg-3 col-md-6">
+        <div className="service-card">
+          <h4>💧 Water Supply</h4>
+        </div>
+      </div>
+
+      <div className="col-lg-3 col-md-6">
+        <div className="service-card">
+          <h4>🚰 Drainage System</h4>
+        </div>
+      </div>
+
+      <div className="col-lg-3 col-md-6">
+        <div className="service-card">
+          <h4>🌳 Public Parks</h4>
+        </div>
+      </div>
+
+      <div className="col-lg-3 col-md-6">
+        <div className="service-card">
+          <h4>🚦 Traffic Signals</h4>
+        </div>
+      </div>
+
+      <div className="col-lg-3 col-md-6">
+        <div className="service-card">
+          <h4>🏢 Municipal Office</h4>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>{/* ================= LATEST ANNOUNCEMENTS ================= */}
+
+<section className="announcement-section">
+
+  <div className="container">
+
+    <div className="section-title">
+
+      <h2>
+        Latest <span>Announcements</span>
+      </h2>
+
+      <p>
+        Stay informed about municipal updates, maintenance schedules,
+        and important public notices.
+      </p>
+
+    </div>
+
+    <div className="row g-4">
+
+      <div className="col-lg-4">
+
+        <div className="announcement-card">
+
+          <span className="announcement-date">
+            15 July 2026
+          </span>
+
+          <h4>Water Supply Maintenance</h4>
+
+          <p>
+            Water supply will remain unavailable from 9:00 AM to 2:00 PM
+            due to scheduled maintenance.
+          </p>
+
+         
+        </div>
+
+      </div>
+
+      <div className="col-lg-4">
+
+        <div className="announcement-card">
+
+          <span className="announcement-date">
+            18 July 2026
+          </span>
+
+          <h4>Road Repair Work</h4>
+
+          <p>
+            Road repair work will begin in Ward 12 from Monday.
+            Please use alternate routes.
+          </p>
+
+          
+
+        </div>
+
+      </div>
+
+      <div className="col-lg-4">
+
+        <div className="announcement-card">
+
+          <span className="announcement-date">
+            20 July 2026
+          </span>
+
+          <h4>Clean City Campaign</h4>
+
+          <p>
+            Join the city-wide cleanliness drive and help build
+            a cleaner environment.
+          </p>
+
+          
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{/* ================= TESTIMONIALS ================= */}
+
+<section className="testimonial-section">
+
+  <div className="container">
+
+    <div className="section-title">
+
+      <h2>
+        Citizen <span>Testimonials</span>
+      </h2>
+
+      <p>
+        Hear what citizens say about WardPulse.
+      </p>
+
+    </div>
+
+    <div className="row g-4">
+
+      <div className="col-lg-4">
+
+        <div className="testimonial-card">
+
+          <h5>⭐⭐⭐⭐⭐</h5>
+
+          <p>
+            "Reporting a garbage issue was quick and easy.
+            My complaint was resolved within two days."
+          </p>
+
+          <h6>- Rahul Sharma</h6>
+
+        </div>
+
+      </div>
+
+      <div className="col-lg-4">
+
+        <div className="testimonial-card">
+
+          <h5>⭐⭐⭐⭐⭐</h5>
+
+          <p>
+            "The complaint tracking feature keeps me informed
+            throughout the entire process."
+          </p>
+
+          <h6>- Priya Singh</h6>
+
+        </div>
+
+      </div>
+
+      <div className="col-lg-4">
+
+        <div className="testimonial-card">
+
+          <h5>⭐⭐⭐⭐⭐</h5>
+
+          <p>
+            "A very useful platform that improves communication
+            between citizens and municipal authorities."
+          </p>
+
+          <h6>- Aman Verma</h6>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{/* ================= CALL TO ACTION ================= */}
+
+
+
+
+
+
+
+  </>
+);
     </>
   );
 }
