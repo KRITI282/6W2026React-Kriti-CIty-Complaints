@@ -106,7 +106,16 @@ export default function Form() {
                   type="text"
                   name="name"
                   className="form-control"
-                  placeholder="Your Name"
+                  placeholder="Your title"
+                  required=""
+                />
+              </div>
+              <div className="col-md-6">
+                <input
+                  type="text"
+                  name="name"
+                  className="form-control"
+                  placeholder="description"
                   required=""
                 />
               </div>
@@ -120,6 +129,22 @@ export default function Form() {
     <option value="">Select Category</option>
 
     {categories.map((c) => (
+        <option key={c.id} value={c.id}>
+            {c.name}
+        </option>
+    ))}
+</select>
+</div>
+ <div className="col-md-6">
+              <select
+    className="form-control"
+    name="cityId"
+    value={data.cityId}
+    onChange={handleChange}
+>
+    <option value="">Select City</option>
+
+    {cities.map((c) => (
         <option key={c.id} value={c.id}>
             {c.name}
         </option>
