@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { PacmanLoader } from "react-spinners";
-import UserService from "../../../services/UserService"
+import UserService from "../../../Services/UserService"
 // import Swal from 'sweetalert2'
 // About page component
 export default function ManageUser() {

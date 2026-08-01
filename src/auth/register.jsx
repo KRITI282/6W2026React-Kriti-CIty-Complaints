@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import UserService from "../services/UserService";
+import UserService from "../Services/UserService";
 import { Link } from "react-router-dom";
 
  export default function Register() {

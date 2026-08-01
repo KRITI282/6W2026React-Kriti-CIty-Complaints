@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { PacmanLoader } from "react-spinners";
-import UserService from "../../../services/UserService";
+import UserService from "../../../Services/UserService";
 
 export default function AddUser() {
     const override = {

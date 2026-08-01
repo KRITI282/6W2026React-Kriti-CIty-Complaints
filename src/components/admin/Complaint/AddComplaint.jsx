@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { PacmanLoader } from "react-spinners";
-import ComplaintService from "../../../services/ComplaintService";
+import ComplaintService from "../../../Services/ComplaintService";
 
 export default function AddComplaint() {
     const override = {

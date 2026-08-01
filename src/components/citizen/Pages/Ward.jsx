@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import WardService from "../../../services/WardService";
+import WardService from "../../../Services/WardService";
 import { useEffect, useState } from "react";
 import City from "./City";
 import CityService from "../../../Services/CityService";

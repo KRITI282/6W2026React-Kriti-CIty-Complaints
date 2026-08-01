@@ -1,5 +1,5 @@
 import { collection, addDoc, getDocs, doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
-import { City } from "../models/City";
+import { City } from "../Models/City";
 import { db } from "../Firebase";
 const dbPath = "cities"
 import { toast } from "react-toastify";

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { PacmanLoader } from "react-spinners";
-import ComplaintService from "../../../services/ComplaintService"
-import CategoryService from "../../../services/CategoryService";
+import ComplaintService from "../../../Services/ComplaintService"
+import CategoryService from "../../../Services/CategoryService";
 // import Swal from 'sweetalert2'
 export default function ManageComplaint() {
     const override = {

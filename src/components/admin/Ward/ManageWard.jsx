@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { PacmanLoader } from "react-spinners";
-import CityService from "../../../services/CityService"
+import CityService from "../../../Services/CityService"
 import Swal from 'sweetalert2'
 import Modal from 'react-modal';
 import { toast } from "react-toastify";
-import CloudinaryService from "../../../services/CloudinaryService";
-import WardService from "../../../services/WardService";
+import CloudinaryService from "../../../Services/CloudinaryService";
+import WardService from "../../../Services/WardService";
 // About page component
 export default function ManageWard() {
 
