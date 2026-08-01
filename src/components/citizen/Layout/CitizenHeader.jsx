@@ -11,7 +11,7 @@ export default function CitizenHeader() {
               to="index"
               className="logo d-flex align-items-center me-auto me-xl-0"
             >
-             <img src="assets/img/ChatGPT Image Jul 25, 2026, 10_27_12 PM.png" ></img>
+             <img src="/assets/img/ChatGPT Image Jul 25, 2026, 10_27_12 PM.png"></img>
               <h1 className="sitename">WardPulse</h1>
             </Link>
 
