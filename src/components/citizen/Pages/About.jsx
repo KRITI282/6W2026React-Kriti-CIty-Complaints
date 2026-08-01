@@ -132,7 +132,7 @@ export default function About() {
                   </div>
                   <div className="col md-4">
                     <div className="card" style={{ width: "18rem" }}>
-                      <img src="public/assets/img/testimonials/testimonials-3.jpg" className="card-img-top" alt="..." />
+                      <img src="/assets/img/testimonials/testimonials-3.jpg" className="card-img-top" alt="..." />
                       <div className="card-body">
                         <h5 className="card-title">Kriti</h5>
                         <p className="card-text">
@@ -156,7 +156,7 @@ export default function About() {
                   </div>
                   <div className="col md-4">
                     <div className="card" style={{ width: "18rem" }}>
-                      <img src="F/assets/img/testimonials/testimonials-3.jpg" className="card-img-top" alt="..." />
+                      <img src="/assets/img/testimonials/testimonials-3.jpg" className="card-img-top" alt="..." />
                       <div className="card-body">
                         <h5 className="card-title">Kriti</h5>
                         <p className="card-text">
@@ -186,7 +186,7 @@ export default function About() {
                   </p>
                   <div className="profile mt-auto">
                     <img
-                      src="assets/img/testimonials/testimonials-2.jpg"
+                      src="/assets/img/testimonials/testimonials-2.jpg"
                       className="testimonial-img"
                       alt=""
                     />
