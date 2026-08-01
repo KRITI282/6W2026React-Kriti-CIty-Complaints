@@ -118,12 +118,7 @@ export default function About() {
             <div className="swiper-wrapper">
               <div className="swiper-slide">
                 <div className="row">
-                  <div className="col md-4">
-                    <div className="card" style={{ width: "18rem" }}>
-                      <img src="public/assets/img/testimonials/testimonials-3.jpg" className="card-img-top" alt="..." />
-                    
-                    </div>
-                  </div>
+                 
                   <div className="col md-4">
                     <div className="card" style={{ width: "18rem" }}>
                       <img src="/assets/img/testimonials/testimonials-3.jpg" className="card-img-top" alt="..." />
