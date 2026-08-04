@@ -83,7 +83,7 @@ export default function Form() {
 
       await ComplaintService.add(payload);
       toast.success("Complaint submitted successfully!");
-      navigate("/profile");
+      navigate("/my-complaints");
     } catch (error) {
       console.log(error);
       toast.error("Failed to submit complaint");
