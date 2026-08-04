@@ -8,11 +8,12 @@ class AuthService {
         localStorage.setItem("uid", data.uid)
         localStorage.setItem("name", data.name)
         localStorage.setItem("userType", data.userType)
-
     }
-
     getUserType() {
         return localStorage.getItem("userType")
+    }
+    getIsLogin() {
+        return !!localStorage.getItem("uid")
     }
     getId() {
         return localStorage.getItem("uid")
@@ -20,8 +21,6 @@ class AuthService {
     getEmail() {
         return localStorage.getItem("email")
     }
-
-
     logout() {
         localStorage.clear()
         sessionStorage.clear()

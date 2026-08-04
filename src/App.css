@@ -1,0 +1,38 @@
+
+.btn-primary {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #ffffff !important;
+}
+
+.btn-primary:hover {
+    background-color: #e6e6e6 !important;
+    color: #000000 !important;
+    border-color: #e6e6e6 !important;
+}
+
+/* Danger Button (Delete) */
+.btn-danger {
+    background-color: transparent !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+}
+
+.btn-danger:hover {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+/* Primary Text (Headings) */
+.text-primary {
+    color: #ffffff !important;
+}
+
+
+.btn:focus,
+.btn:active {
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25) !important;
+}
+.table {
+    border-color: #ffffff !important;
+}

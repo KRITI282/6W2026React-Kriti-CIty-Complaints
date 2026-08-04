@@ -9,24 +9,21 @@ import Contact from './components/citizen/Pages/Contact'
 import Layout from './components/admin/Layout/Layout'
 import Dashboard from './components/admin/Dashboard'
 import ManageCategory from './components/admin/Category/ManageCategory'
-import AddCategory from './components/admin/Category/AddCategory'
 import { ToastContainer } from 'react-toastify'
 import ManageCity from './components/admin/City/ManageCity'
-import AddCity from './components/admin/City/AddCity'
-import AddWard from './components/admin/Ward/AddWard'
 import ManageWard from './components/admin/Ward/ManageWard'
 import ManageComplaint from './components/admin/Complaint/ManageComplaint'
-import AddComplaint from './components/admin/Complaint/AddComplaint'
 import ManageUser from './components/admin/User/ManageUser'
-import AddUser from './components/admin/User/AddUser'
+import ManageContact from './components/admin/Contact/ManageContact'
 import Login from './auth/login'
 import Register from './auth/register'
 
 import Category from './components/citizen/Pages/Category'
 import City from './components/citizen/Pages/City'
-
 import Ward from './components/citizen/Pages/Ward'
 import Form from './components/citizen/Pages/Form'
+import ManageProfile from './components/citizen/Pages/ManageProfile'
+import MyComplaints from './components/citizen/Pages/MyComplaints'
 
 
 
@@ -40,43 +37,28 @@ export default function App() {
             <Route path='/' element={< Home />} />
             <Route path='/about' element={<About />} />
             <Route path='/category' element={<Category />} />
-             <Route path='/City' element={<City />} />
-              <Route path='/Ward/:cityId' element={<Ward/>} />
+            <Route path='/City/:categoryId' element={<City />} />
+            <Route path='/Ward/:categoryId/:cityId' element={<Ward />} />
             <Route path='/contact' element={<Contact />} />
-            <Route path='/form' element={<Form />} />
+            <Route path='/form/:categoryId/:cityId/:wardId' element={<Form />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={< Register />} />
+            <Route path='/profile' element={<ManageProfile />} />
+            <Route path='/my-complaints' element={<MyComplaints />} />
           </Route>
 
           <Route path='/admin' element={<Layout />}>
-
             <Route index element={<Dashboard />} />
-            <Route path='Categories' element={<ManageCategory />} />
-            <Route path='category/add' element={<AddCategory />} />
-
+            <Route path='categories' element={<ManageCategory />} />
             <Route path='city' element={<ManageCity />} />
-            <Route path='city/add' element={<AddCity />} />
-
             <Route path='wards' element={<ManageWard />} />
-            <Route path='Ward/add' element={<AddWard />} />
-
             <Route path='complaints' element={<ManageComplaint />} />
-            <Route path='Complaint/add' element={<AddComplaint />} />
-
             <Route path='users' element={<ManageUser />} />
-            <Route path='User/add' element={<AddUser />} />
+            <Route path='contacts' element={<ManageContact />} />
           </Route>
-
-
         </Routes>
         <ToastContainer />
-
-
-
-
       </BrowserRouter>
-
-
     </>
   )
 }

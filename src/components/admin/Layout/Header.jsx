@@ -1,74 +1,57 @@
 
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import AuthService from "../../../Services/AuthService";
 
 export default function Header() {
+  const navigate = useNavigate();
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    AuthService.logout();
+    navigate("/");
+  };
+
   return (
-
-
     <>
       <header id="header" className="header d-flex align-items-center sticky-top">
         <div className="container-fluid position-relative d-flex align-items-center justify-content-between">
           <Link
-            to="index"
+            to="/admin"
             className="logo d-flex align-items-center me-auto me-xl-0"
           >
-            {/* Uncomment the line below if you also wish to use an image logo */}
-            {/* <img src="assets/img/logo.png" alt=""> */}
-
-            <h1 className="sitename">WardPulse</h1>
+            <h1 className="sitename">WardPulse Admin</h1>
           </Link>
 
           <nav id="navmenu" className="navmenu">
             <ul>
               <li>
-                <Link to="/admin" className="active">
-                  dashboard
-                  <br />
-                </Link>
-
+                <NavLink to="/admin" end>dashboard</NavLink>
               </li>
               <li>
-                <Link to="/admin/categories">category</Link>
-              </li>
-              <li >
-                <Link to="/admin/wards">
-                  <span>wards</span>{" "}
-                </Link>
-              </li>
-              <li >
-                <Link to="/admin/city">
-                  <span>city</span>{" "}
-                </Link>
-
+                <NavLink to="/admin/complaints">complaints</NavLink>
               </li>
               <li>
-                <Link to="/admin/complaints">complaints</Link>
-
+                <NavLink to="/admin/categories">category</NavLink>
               </li>
               <li>
-                <Link to="/admin/users">users</Link>
-
+                <NavLink to="/admin/city">city</NavLink>
+              </li>
+              <li>
+                <NavLink to="/admin/wards">wards</NavLink>
+              </li>
+              <li>
+                <NavLink to="/admin/users">users</NavLink>
+              </li>
+              <li>
+                <NavLink to="/admin/contacts">contacts</NavLink>
               </li>
             </ul>
             <i className="mobile-nav-toggle d-xl-none bi bi-list" />
           </nav>
           <div className="header-social-links">
-            <Link to="#" className="twitter">
-              <i className="bi bi-twitter-x" />
+            <Link onClick={handleLogout} className="logout-btn text-decoration-none">
+              <i className="bi bi-box-arrow-right" /> Logout
             </Link>
-
-            <Link to="#" className="facebook">
-              <i className="bi bi-facebook" />
-            </Link>
-
-            <Link to="#" className="instagram">
-              <i className="bi bi-instagram" />
-            </Link>
-
-            <Link to="#" className="linkedin">
-              <i className="bi bi-linkedin" />
-            </Link>
-
           </div>
         </div>
       </header>

@@ -1,199 +1,189 @@
 import React, { useEffect, useState } from "react";
-import CategoryService from "../../../Services/CategoryService"
+import { useParams, Link, useNavigate } from "react-router-dom";
+import CategoryService from "../../../Services/CategoryService";
 import WardService from "../../../Services/WardService";
 import CityService from "../../../Services/CityService";
-import { Link } from "react-router-dom";
+import ComplaintService from "../../../Services/ComplaintService";
+import AuthService from "../../../Services/AuthService";
+import CloudinaryService from "../../../Services/CloudinaryService";
+import { toast } from "react-toastify";
+import { PulseLoader } from "react-spinners";
 
 export default function Form() {
+  const { categoryId, cityId, wardId } = useParams();
+  const navigate = useNavigate();
 
-  const [categories, setCategories] = useState([]);
-  const [wards, setWards] = useState([])
-  const [cities, setCities] = useState([]);
-  const [data, setData] = useState({ categoryId: "", cityId: "" });
+  const [categoryName, setCategoryName] = useState("");
+  const [cityName, setCityName] = useState("");
+  const [wardName, setWardName] = useState("");
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState(null);
+
+  const [saving, setSaving] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const data = await CategoryService.all();
-        setCategories(data);
-
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    }
-    const fetchWards = async () => {
-      try {
-        const data = await WardService.all();
-        setWards(data);
-
-      } catch (error) {
-        console.error("Error fetching Wards:", error);
-      }
-
-    }
-    const fetchCities = async () => {
-      try {
-        const data = await CityService.all();
-        setCities(data);
-
-      } catch (error) {
-        console.error("Error fetching Cities:", error);
-      }
-
-    }
-    fetchCategories();
-    fetchWards();
-    fetchCities();
+    fetchDetails();
   }, []);
-  const handleChange = (e) => {
-    setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
+  const fetchDetails = async () => {
+    try {
+      setLoading(true);
+      const category = await CategoryService.single(categoryId);
+      if (category) setCategoryName(category.name);
+
+      const city = await CityService.single(cityId);
+      if (city) setCityName(city.name);
+
+      const ward = await WardService.single(wardId);
+      if (ward) setWardName(ward.name);
+
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to load details");
+    } finally {
+      setLoading(false);
+    }
   };
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!AuthService.getIsLogin()) {
+      toast.error("Please login to submit a complaint.");
+      navigate("/login");
+      return;
+    }
+
+    try {
+      setSaving(true);
+      let imageUrl = "";
+      if (image) {
+        imageUrl = await CloudinaryService.upload(image);
+      } else {
+        toast.error("Please provide an image for the complaint.");
+        setSaving(false);
+        return;
+      }
+
+      let payload = {
+        userId: AuthService.getId(),
+        categoryId: categoryId,
+        cityId: cityId,
+        wardId: wardId,
+        title: title,
+        description: description,
+        complaintImageUrl: imageUrl,
+      };
+
+      await ComplaintService.add(payload);
+      toast.success("Complaint submitted successfully!");
+      navigate("/profile");
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to submit complaint");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const override = {
+    display: "block",
+    margin: "0 auto",
+  };
+
   return (
     <>
-
-
       {/* Page Title */}
-      <div className="page-title" >
-        <div className="heading">
-          <div className="container">
-            <div className="row d-flex justify-content-center text-center">
-              <div className="col-lg-8">
-                <h1>Citizen Complaint Form</h1>
-                <p className="mb-0">
-                  Odio et unde deleniti. Deserunt numquam exercitationem. Officiis
-                  quo odio sint voluptas consequatur ut a odio voluptatem. Sit
-                  dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit
-                  quaerat ipsum dolorem.
-                </p>
-              </div>
-            </div>
+      <div className="container py-5 mb-4 border-bottom border-secondary mt-4">
+        <div className="row d-flex justify-content-center text-center">
+          <div className="col-lg-8">
+            <h1 className="fw-bold text-uppercase mb-3 text-white" style={{ letterSpacing: "1.5px" }}>Lodge Complaint</h1>
+            <p className="mb-0 text-secondary fs-5" style={{ lineHeight: "1.6" }}>
+              Please provide the details of your complaint below. Attach a clear photo so authorities can take prompt action.
+            </p>
           </div>
         </div>
-        <nav className="breadcrumbs">
-          <div className="container">
-            <ol>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li className="current">Contact</li>
-            </ol>
-          </div>
-        </nav>
       </div>
       {/* End Page Title */}
-      {/* Contact Section */}
-      <section id="contact" className="contact section">
+
+      <section id="contact" className="contact section mb-5">
         <div className="container">
-          <div className="info-wrap" >
-            <div className="row gy-5">
-              <div className="col-lg-4">
-
-              </div>
-              {/* End Info Item */}
-
+          {loading ? (
+            <div className="text-center py-5">
+              <PulseLoader color="#000000" loading={loading} cssOverride={override} size={20} />
             </div>
-          </div>
-          <form
+          ) : (
+            <div className="row justify-content-center">
+              <div className="col-lg-8">
+                <form onSubmit={handleSubmit} className="p-4 border border-secondary rounded shadow-sm bg-transparent">
+                  <div className="row gy-4">
 
-            className="php-email-form"
+                    <div className="col-md-4">
+                      <label className="form-label text-white fw-bold">Category</label>
+                      <input type="text" className="form-control shadow-none border border-secondary bg-transparent text-secondary" value={categoryName} readOnly />
+                    </div>
+                    <div className="col-md-4">
+                      <label className="form-label text-white fw-bold">City</label>
+                      <input type="text" className="form-control shadow-none border border-secondary bg-transparent text-secondary" value={cityName} readOnly />
+                    </div>
+                    <div className="col-md-4">
+                      <label className="form-label text-white fw-bold">Ward</label>
+                      <input type="text" className="form-control shadow-none border border-secondary bg-transparent text-secondary" value={wardName} readOnly />
+                    </div>
 
-          >
-            <div className="row gy-4">
-              <div className="col-md-6">
-                <input
-                  type="text"
-                  name="name"
-                  className="form-control"
-                  placeholder="Your title"
-                  required=""
-                />
-              </div>
-              <div className="col-md-6">
-                <input
-                  type="text"
-                  name="name"
-                  className="form-control"
-                  placeholder="description"
-                  required=""
-                />
-              </div>
-              <div className="col-md-6">
-              <select
-    className="form-control"
-    name="categoryId"
-    value={data.categoryId}
-    onChange={handleChange}
->
-    <option value="">Select Category</option>
+                    <div className="col-md-12 mt-4">
+                      <label className="form-label text-white fw-bold">Complaint Title</label>
+                      <input
+                        type="text"
+                        className="form-control shadow-none border border-secondary bg-transparent text-white"
+                        placeholder="e.g. Broken street light near main road"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        required
+                      />
+                    </div>
 
-    {categories.map((c) => (
-        <option key={c.id} value={c.id}>
-            {c.name}
-        </option>
-    ))}
-</select>
-</div>
- <div className="col-md-6">
-              <select
-    className="form-control"
-    name="cityId"
-    value={data.cityId}
-    onChange={handleChange}
->
-    <option value="">Select City</option>
+                    <div className="col-md-12">
+                      <label className="form-label text-white fw-bold">Description</label>
+                      <textarea
+                        className="form-control shadow-none border border-secondary bg-transparent text-white"
+                        rows={5}
+                        placeholder="Provide detailed information about the issue..."
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        required
+                      />
+                    </div>
 
-    {cities.map((c) => (
-        <option key={c.id} value={c.id}>
-            {c.name}
-        </option>
-    ))}
-</select>
-</div>
-              <div className="col-md-6 ">
-                <input
-                  type="email"
-                  className="form-control"
-                  name="email"
-                  placeholder="Your Email"
-                  required=""
-                />
-              </div>
-              <div className="col-md-12">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="subject"
-                  placeholder="Subject"
-                  required=""
-                />
-              </div>
-              <div className="col-md-12">
-                <textarea
-                  className="form-control"
-                  name="message"
-                  rows={6}
-                  placeholder="Message"
-                  required=""
-                  defaultValue={""}
-                />
-              </div>
-              <div className="col-md-12 text-center">
-                <div className="loading">Loading</div>
-                <div className="error-message" />
-                <div className="sent-message">
-                  Your message has been sent. Thank you!
-                </div>
-                <button type="submit">Send Message</button>
+                    <div className="col-md-12">
+                      <label className="form-label text-white fw-bold">Upload Evidence (Photo)</label>
+                      <input
+                        type="file"
+                        className="form-control shadow-none border border-secondary bg-transparent text-white"
+                        onChange={handleImageChange}
+                        accept="image/*"
+                        required
+                      />
+                    </div>
+
+                    <div className="col-md-12 text-center mt-4 border-top border-secondary pt-4">
+                      <button type="submit" className="btn btn-outline-light px-5 py-2" disabled={saving}>
+                        {saving ? "Submitting..." : "Submit Complaint"}
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
-          </form>
-          {/* End Contact Form */}
+          )}
         </div>
       </section>
-      {/* /Contact Section */}
     </>
-  )
-};
-
-
-
+  );
+}

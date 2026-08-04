@@ -7,8 +7,8 @@ export class Complaint {
     description = ""
     complaintImageUrl = ""
     resolutionProofUrl = ""
-    complaintStatus = "" //Pending/In Progress/Resolved/Rejected
     adminRemark = ""
+    complaintStatus = "" 
     status="true"
     createdAt = Date.now()
     

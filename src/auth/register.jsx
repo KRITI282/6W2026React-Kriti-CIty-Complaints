@@ -1,173 +1,126 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import UserService from "../Services/UserService";
-import { Link } from "react-router-dom";
 
- export default function Register() {
-  const [name, setName] = useState("")
-  const [contact, setContact] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  let [loading, setLoading] = useState(false);
-  const nav = useNavigate()
+export default function Register() {
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const nav = useNavigate();
 
   async function submit(e) {
     try {
-      e.preventDefault()
-      setLoading(true)
+      e.preventDefault();
+      setLoading(true);
       let payload = {
         name: name,
         contact: contact,
         email: email,
         password: password
-
-      }
-      let res = await UserService.register(payload)
-      toast.success("Register Successfully")
-      setLoading(false)
-      nav("/login")
-    }
-    catch (error) {
-      setLoading(false)
+      };
+      await UserService.register(payload);
+      toast.success("Registered Successfully");
+      setLoading(false);
+      nav("/login");
+    } catch (error) {
+      setLoading(false);
       console.log(error);
-      toast.error(error)
-
+      toast.error(error.code || error.message || "Registration failed");
+    } finally {
+      setLoading(false);
     }
-    finally {
-      setLoading(false)
-    }
-
   }
 
-  {
-    return (
-      <>
-
-
-        {/* Page Title */}
-        <div className="page-title" >
-          <div className="heading">
-            <div className="container">
-              <div className="row d-flex justify-content-center text-center">
-                <div className="col-lg-8">
-                  <h1>Register</h1>
-                  <p className="mb-0">
-                    Odio et unde deleniti. Deserunt numquam exercitationem. Officiis
-                    quo odio sint voluptas consequatur ut a odio voluptatem. Sit
-                    dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit
-                    quaerat ipsum dolorem.
-                  </p>
-                </div>
-              </div>
-            </div>
+  return (
+    <>
+      <div className="container py-5 mt-4 mb-4 border-bottom border-secondary">
+        <div className="row d-flex justify-content-center text-center">
+          <div className="col-lg-8">
+            <h1 className="fw-bold text-uppercase mb-3 text-white" style={{ letterSpacing: "1.5px" }}>Register</h1>
+            <p className="mb-0 text-secondary fs-5" style={{ lineHeight: "1.6" }}>
+              Create an account to report and track civic issues in your city.
+            </p>
           </div>
-          <nav className="breadcrumbs">
-            <div className="container">
-              <ol>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li className="current">Contact</li>
-              </ol>
-            </div>
-          </nav>
         </div>
-        {/* End Page Title */}
-        {/* Contact Section */}
-        <section id="contact" className="contact section">
-          <div className="container">
-            <div className="info-wrap" >
-              <div className="row gy-5">
+      </div>
 
-                {/* End Info Item */}
-
-                {/* End Info Item */}
-
-                {/* End Info Item */}
-              </div>
-            </div>
-            <form
-              onSubmit={submit}
-              className="php-email-form"
-
-            >
-              <div className="row gy-4">
-                <div className="col-md-6">
-                  <input
-                    type="text"
-                    name="name"
-                    className="form-control"
-                    placeholder="Your Name"
-                    required=""
-                    onChange={(e) => {
-                      setName(e.target.value)
-                    }}
-                  />
-                </div>
-                <div className="col-md-6">
-                  <input
-                    type="number"
-                    name="contact"
-                    className="form-control"
-                    placeholder="Your Contact"
-                    required=""
-                    value={contact}
-                    onChange={(e) => {
-                      setContact(e.target.value)
-                    }}
-                  />
-                </div>
-                <div className="col-md-6 ">
-                  <input
-                    type="email"
-                    className="form-control"
-                    name="email"
-                    placeholder="Your Email"
-                    required=""
-                    value={email}
-                    onChange={(e) => {
-                      setEmail(e.target.value)
-                    }}
-                  />
-                </div>
-                <div className="col-md-6">
-                  <input
-                    type="password"
-                    className="form-control"
-                    name="password"
-                    placeholder="password"
-                    required=""
-                    onChange={(e) => {
-                      setPassword(e.target.value)
-                    }}
-                  />
-                </div>
-
-                <div className="col-md-12 text-center">
-                  <div className="loading">Loading</div>
-                  <div className="error-message" />
-                  <div className="sent-message">
-                    Your message has been sent. Thank you!
+      <div className="container pb-5 mb-5">
+        <div className="row justify-content-center">
+          <div className="col-md-7 col-lg-6">
+            <div className="card bg-transparent border-secondary shadow p-4">
+              <div className="card-body text-center">
+                <h2 className="text-white fw-bold mb-4">Create Account</h2>
+              <form onSubmit={submit}>
+                <div className="row g-3 text-start">
+                  <div className="col-md-6 mb-3">
+                    <label className="form-label text-white fw-semibold">Full Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      className="form-control bg-dark text-white border-secondary"
+                      placeholder="Your Name"
+                      required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
                   </div>
-                  <button type="submit">
-                    {
-                      loading ? " Saving .." : "Register"
-                    }
-                  </button>
+                  <div className="col-md-6 mb-3">
+                    <label className="form-label text-white fw-semibold">Contact Number</label>
+                    <input
+                      type="number"
+                      name="contact"
+                      className="form-control bg-dark text-white border-secondary"
+                      placeholder="Your Contact"
+                      required
+                      value={contact}
+                      onChange={(e) => setContact(e.target.value)}
+                    />
+                  </div>
+                  <div className="col-md-6 mb-3">
+                    <label className="form-label text-white fw-semibold">Email Address</label>
+                    <input
+                      type="email"
+                      className="form-control bg-dark text-white border-secondary"
+                      name="email"
+                      placeholder="Your Email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                  <div className="col-md-6 mb-3">
+                    <label className="form-label text-white fw-semibold">Password</label>
+                    <input
+                      type="password"
+                      className="form-control bg-dark text-white border-secondary"
+                      name="password"
+                      placeholder="Your Password"
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="col-12 mt-4 text-center">
+                    <button type="submit" className="btn btn-success w-100 py-2 fw-bold" disabled={loading}>
+                      {loading ? "Registering..." : "Register"}
+                    </button>
+                  </div>
+                  <div className="col-12 mt-3 text-center">
+                    <p className="text-secondary">
+                      Already have an account? <Link to="/login" className="text-success text-decoration-none fw-bold">Login here</Link>
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </form>
-            {/* End Contact Form */}
+              </form>
+            </div>
           </div>
-        </section>
-        {/* /Contact Section */}
-      </>
-
-
-
-
-    )
-  }
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
-

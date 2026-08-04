@@ -6,7 +6,6 @@ const dbPath = "wards"
 
 class WardService {
     async add(data) {
-        // console.log(data);
         const newWard = new Ward()
         newWard.name = data.name
         newWard.cityId = data.cityId
@@ -16,14 +15,30 @@ class WardService {
         return newWard
     }
 
-    async all() {
-        const querySnapshot = await getDocs(collection(db, dbPath));
-        var wards = []
-        querySnapshot.forEach((doc) => {
-            wards.push({ id: doc.id, ...doc.data() })
-        });
-        return wards;
+    async all(payload) {
+        try {
+            let q = collection(db, dbPath);
+            if (payload) {
+                for (let key in payload) {
+                    let value = payload[key];
+                    if (value) {
+                        q = query(q, where(key, "==", value));
+                    }
+                }
+            }
+            const querySnapshot = await getDocs(q);
+            const wards = [];
+            querySnapshot.forEach((doc) => {
+                wards.push({ id: doc.id, ...doc.data() });
+            });
+            return wards;
+        } catch (error) {
+            console.error("Error fetching wards: ", error);
+            toast.error("Failed to fetch wards!");
+            return [];
+        }
     }
+
     async allByCity(cityId) {
         const q = query(collection(db, dbPath), where("cityId", "==", cityId));
         const querySnapshot = await getDocs(q);

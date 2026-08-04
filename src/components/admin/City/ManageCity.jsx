@@ -6,11 +6,13 @@ import { toast } from "react-toastify";
 import { PulseLoader } from "react-spinners";
 import Swal from "sweetalert2";
 
-Modal.setAppElement('#root');
-
-export default function ManageCity(){
+export default function ManageCity() {
 
     const customStyles = {
+        overlay: {
+            zIndex: 9999,
+            backgroundColor: "rgba(0, 0, 0, 0.6)"
+        },
         content: {
             top: "50%",
             left: "50%",
@@ -34,11 +36,11 @@ export default function ManageCity(){
     const [preview, setPreview] = useState("");
 
     // List + Modal state
-    const [Cities, setCities] = useState([]);
+    const [cities, setCities] = useState([]);
     const [loading, setLoading] = useState(false);
     const [modalIsOpen, setIsOpen] = useState(false);
     const [isEditMode, setIsEditMode] = useState(false);
-    const [editId, setEditId] = useState(null); 
+    const [editId, setEditId] = useState(null);
 
     useEffect(() => {
         getAllCities();
@@ -51,13 +53,12 @@ export default function ManageCity(){
         setLoading(false)
     }
 
-    
-    function openModal(City = null) {
-        if (City) { // Edit mode
+    function openModal(city = null) {
+        if (city) { // Edit mode
             setIsEditMode(true)
-            setEditId(City.id)
-            setName(City.name)
-            setPreview(City.imageUrl) // purani image
+            setEditId(city.id)
+            setName(city.name)
+            setPreview(city.imageUrl) // purani image
             setImage(null)
         } else { // Add mode
             setIsEditMode(false)
@@ -83,11 +84,10 @@ export default function ManageCity(){
         const file = e.target.files[0];
         if (file) {
             setImage(file);
-            setPreview(URL.createObjectURL(file)) 
+            setPreview(URL.createObjectURL(file))
         }
     }
 
-    
     async function handleSubmit(e) {
         e.preventDefault();
 
@@ -98,7 +98,7 @@ export default function ManageCity(){
 
         try {
             setLoading(true);
-            let imageUrl = preview; 
+            let imageUrl = preview;
 
             if (image) {
                 imageUrl = await CloudinaryService.upload(image);
@@ -107,16 +107,14 @@ export default function ManageCity(){
             const payload = {
                 name: name,
                 imageUrl: imageUrl,
-                createAt: new Date() 
+                createAt: new Date()
             };
 
             if (isEditMode) { // Update
                 await CityService.update(editId, payload);
                 toast.success("City Updated Successfully");
             } else { // Add
-                await CityService
-                
-                .add(payload);
+                await CityService.add(payload);
                 toast.success("City Added Successfully");
             }
 
@@ -152,19 +150,19 @@ export default function ManageCity(){
 
     return (
         <>
-            <section id="hero" className="hero section">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                            <h1>Manage City</h1>
-                           
-                        </div>
+            <div className="container py-5 mb-4 border-bottom border-secondary">
+                <div className="row d-flex justify-content-center text-center">
+                    <div className="col-lg-8">
+                        <h1 className="fw-bold text-uppercase mb-3" style={{ letterSpacing: "1.5px" }}>City Management</h1>
+                        <p className="mb-0 text-secondary fs-5" style={{ lineHeight: "1.6" }}>
+                            Manage cities available across the application. Add, edit, or remove cities to
+                            keep locations updated and help citizens find the right area quickly.
+                        </p>
                     </div>
                 </div>
-            </section>
-
-            <div className="container py-4">
-                <div className="px-4 py-2 bg-light rounded">
+            </div>
+            <div className="container ">
+                <div className="px-4 py-2 rounded">
                     <div className="row mb-3">
                         <div className="col-md">
                             <h2 className="fw-bold text-primary">Cities</h2>
@@ -178,62 +176,68 @@ export default function ManageCity(){
 
                     <div className="row">
                         <div className="col-12">
-                            {loading? <div className="text-center py-4">
-                                <PulseLoader color="#4172F5" loading={loading} cssOverride={override} size={40} />
-                            </div> :
-                                <table className="table table-bordered align-middle">
-                                    <thead className="table-dark">
+                            <table className="table table-border text-white align-middle" style={{ "--bs-table-bg": "transparent", "--bs-table-color": "white", background: "transparent" }}>
+                                <thead className="text-white">
+                                    <tr>
+                                        <th scope="col">S.no </th>
+                                        <th scope="col">Name </th>
+                                        <th scope="col" className="text-center">Image</th>
+                                        <th scope="col" className="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {loading ? (
                                         <tr>
-                                            <th scope="col">S.no </th>
-                                            <th scope="col">Name </th>
-                                            <th scope="col" className="text-center">Image</th>
-                                            <th scope="col" className="text-center">Action</th>
+                                            <td colSpan="4" className="text-center py-5">
+                                                <PulseLoader color="#ffffff" loading={loading} cssOverride={override} size={20} />
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        {Cities.map((City, index) => (
-                                            <tr key={City.id}>
+                                    ) : cities.length === 0 ? (
+                                        <tr>
+                                            <td colSpan="4" className="text-center py-5 text-muted">No cities found.</td>
+                                        </tr>
+                                    ) : (
+                                        cities.map((city, index) => (
+                                            <tr key={city.id}>
                                                 <td>{index + 1}</td>
-                                                <td>{City.name}</td>
+                                                <td>{city.name}</td>
                                                 <td className="text-center">
-                                                    <a href={City.imageUrl} target="_blank">
-                                                        <img src={City.imageUrl} style={{ height: "80px", width: "80px", borderRadius: "50%", objectFit: "cover" }} alt={City.name} />
+                                                    <a href={city.imageUrl} target="_blank">
+                                                        <img src={city.imageUrl} style={{ height: "80px", width: "80px", borderRadius: "50%", objectFit: "cover" }} alt={city.name} />
                                                     </a>
                                                 </td>
                                                 <td className="text-center">
-                                                   
-                                                    <button className="btn btn-sm btn-primary me-2" onClick={() => openModal(City)}>
+                                                    <button className="btn btn-sm btn-primary me-2" onClick={() => openModal(city)}>
                                                         Edit
                                                     </button>
-                                                    <button className="btn btn-sm btn-danger" onClick={() => deleteCity(City.id)}>
+                                                    <button className="btn btn-sm btn-danger" onClick={() => deleteCity(city.id)}>
                                                         Delete
                                                     </button>
                                                 </td>
                                             </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            }
+                                        ))
+                                    )}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
 
-          
-            <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} contentLabel="City Modal">
-                <form onSubmit={handleSubmit}>
-                    <div className="row">
-                        <div className="col-md">
-                            <h3>{isEditMode? "Edit City" : "Add New City"}</h3> {/* Title change */}
-                        </div>
-                    </div>
 
+            <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles} contentLabel="City Modal">
+                <div className="modal-header border-0 pb-0 mb-3">
+                    <h4 className="modal-title fw-bold text-dark">
+                        {isEditMode ? "Edit City" : "Add New City"}
+                    </h4>
+                </div>
+                <form onSubmit={handleSubmit} className="px-2">
                     <div className="row">
-                        <div className="col-md-12 my-2">
-                            <label className="form-label">City Name</label>
+                        <div className="col-md-12 mb-3">
+                            <label className="form-label fw-semibold text-dark">City Name</label>
                             <input
                                 type="text"
-                                className="form-control"
+                                className="form-control shadow-none border border-secondary"
                                 placeholder="Enter City Name"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
@@ -241,27 +245,31 @@ export default function ManageCity(){
                             />
                         </div>
 
-                        <div className="col-md-12 my-2">
-                            <label className="form-label">City Image</label>
+                        <div className="col-md-12 mb-4">
+                            <label className="form-label fw-semibold text-dark">City Image</label>
                             <input
                                 type="file"
-                                className="form-control"
+                                className="form-control shadow-none border border-secondary"
                                 onChange={handleImageChange}
                                 accept="image/*"
                             />
-                            {preview && <img src={preview} alt="preview" className="mt-2 rounded" style={{ width: "100px", height: "100px", objectFit: "cover" }} />}
+                            {preview && (
+                                <div className="mt-3 text-center">
+                                    <img src={preview} alt="preview" className="rounded border border-secondary" style={{ width: "100px", height: "100px", objectFit: "cover" }} />
+                                </div>
+                            )}
                         </div>
                     </div>
 
-                    <div className="row mt-3 justify-content-end">
+                    <div className="row justify-content-end mt-2 pt-3 border-top">
                         <div className="col-auto">
-                            <button className="btn btn-primary btn-sm" type="submit" disabled={loading}>
-                                {loading? "Saving..." : isEditMode? "Update" : "Submit"} {/* Button text change */}
+                            <button className="btn btn-outline-dark px-4" type="button" onClick={closeModal}>
+                                Cancel
                             </button>
                         </div>
                         <div className="col-auto">
-                            <button className="btn btn-danger btn-sm" type="button" onClick={closeModal}>
-                                Close
+                            <button className="btn btn-dark px-4" type="submit" disabled={loading}>
+                                {loading ? "Saving..." : isEditMode ? "Update" : "Save"}
                             </button>
                         </div>
                     </div>

@@ -1,206 +1,156 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { PacmanLoader } from "react-spinners";
-import UserService from "../../../Services/UserService"
-// import Swal from 'sweetalert2'
-// About page component
+import { useState, useEffect } from "react";
+import UserService from "../../../Services/UserService";
+import { toast } from "react-toastify";
+import { PulseLoader } from "react-spinners";
+import Swal from "sweetalert2";
+
 export default function ManageUser() {
+
     const override = {
         display: "block",
         margin: "0 auto",
-        borderColor: "red",
     };
-    let [loading, setLoading] = useState(false);
-    const [User, setUser] = useState([])
+
+    // List state
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        getAllUsers()
+        getAllUsers();
     }, [])
 
     async function getAllUsers() {
+        setLoading(true)
         try {
-            setLoading(true)
-            let res = await UserService.all()
-            setUser(res)
-            setLoading(false)
-
-        }
-        catch (error) {
+            // Only fetch citizens
+            const data = await UserService.all({ userType: 'user' });
+            setUsers(data);
+        } catch (error) {
             console.log(error);
-        }
-        finally {
+        } finally {
             setLoading(false)
-
         }
-
-
     }
 
+    async function handleStatusChange(id, currentStatus) {
+        const newStatus = !currentStatus;
+        const actionText = newStatus ? "Unblock" : "Block";
 
-
-    async function deleteCategory(id) {
-        try {
-
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    setLoading(true)
-                    let res = await CategoryService.delete(id)
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
-                    getAllUser()
+        Swal.fire({
+            title: `Are you sure?`,
+            text: `Do you want to ${actionText} this user?`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: newStatus ? "#41d630" : "#d33",
+            cancelButtonColor: "#6c757d",
+            confirmButtonText: `Yes, ${actionText}!`
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                setLoading(true)
+                try {
+                    await UserService.update(id, { status: newStatus });
+                    toast.success(`User has been ${actionText.toLowerCase()}ed successfully.`);
+                    getAllUsers();
+                } catch (error) {
+                    console.log(error);
+                    toast.error("Failed to update status");
+                    setLoading(false)
                 }
-            });
-        }
-        catch (error) {
-            console.log(error);
-        }
-        finally {
-            setLoading(false)
-
-        }
-
-
+            }
+        });
     }
-
-
-
 
     return (
-        // Fragment wrapper
         <>
-            {/* Single Page Header start */}
-            <div className="container-fluid page-header py-5">
-                <h1 className="text-center text-white display-6">Manage User</h1>
-                <ol className="breadcrumb justify-content-center mb-0">
-                    <li className="breadcrumb-item">
-                        <a href="#">Home</a>
-                    </li>
-                    <li className="breadcrumb-item">
-                        <a href="#">Pages</a>
-                    </li>
-                    <li className="breadcrumb-item active text-white">Contact</li>
-                </ol>
+            <div className="container py-5 mb-4 border-bottom border-secondary mt-4">
+                <div className="row d-flex justify-content-center text-center">
+                    <div className="col-lg-8">
+                        <h1 className="fw-bold text-uppercase mb-3 text-white" style={{ letterSpacing: "1.5px" }}>User Management</h1>
+                        <p className="mb-0 text-secondary fs-5" style={{ lineHeight: "1.6" }}>
+                            View and manage all registered citizens. You can monitor their details and block or unblock their access to the platform.
+                        </p>
+                    </div>
+                </div>
             </div>
-            {/* Single Page Header End */}
-            {/* Contact Start */}
-            <div className="container-fluid contact py-5">
-                <div className="container-fluid py-5">
-                    <div className="row">
+            <div className="container ">
+                <div className="px-4 py-2 rounded">
+                    <div className="row mb-3">
                         <div className="col-md">
-                            <h3> Users List</h3>
-                        </div>
-                        <div className="col-md text-end">
-                            <Link to="/admin/User/add">
-                                <button className="btn btn-sm btn-primary text-light">+Add Users</button>
-                            </Link>
-
+                            <h2 className="fw-bold text-white">Registered Users</h2>
                         </div>
                     </div>
-                    <div className="p-5 bg-light rounded">
 
-
-                        <div className="row g-4">
-                            <div className="col-12">
-
-                                {
-
-                                    loading ? <div >
-                                        <PacmanLoader
-                                            color="#89C407"
-                                            loading={loading}
-                                            cssOverride={override}
-                                            size={40}
-                                            aria-label="Loading Spinner"
-                                            data-testid="loader"
-                                        />
-                                    </div> :
-                                        <table className="table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">name</th>
-                                                    <th scope="col"> email</th>
-                                                    <th scope="col">phone</th>
-                                                    <th scope="col">address </th>
-                                                    <th scope="col"> profileImage</th>
-                                                    <th scope="col">userType</th>
-                                                    
-                                                    <th scope="col">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {
-                                                    User.map((User, index) => (
-                                                        <tr>
-                                                            <td>{index + 1}</td>
-                                                            <td>{User.name}</td>
-                                                            <td>
-
-                                                                <img src={User.image} alt="" style={{
-                                                                    height: "100px",
-                                                                    borderRadius: "50%"
-                                                                }} />
-                                                            </td>
-
-
-                                                            <td>
-                                                                <Link to={`/admin/User/edit/${User.id}`}>
-
-
-                                                                    <button className="btn btn-sm btn-primary">
-                                                                        Edit
-                                                                    </button>
-                                                                </Link>
-
-
-
-                                                                &nbsp;
-                                                                <button className="btn btn-sm btn-danger" onClick={
-                                                                    () => {
-                                                                        deleteUser(User.id)
-                                                                    }
-                                                                }>
-                                                                    Delete
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-
-                                                    ))
-                                                }
-
-
-                                            </tbody>
-                                        </table>
-
-
-
-                                }
-
-
-                            </div>
-
-
-
+                    <div className="row">
+                        <div className="col-12 table-responsive">
+                            <table className="table table-border text-white align-middle" style={{ "--bs-table-bg": "transparent", "--bs-table-color": "white", background: "transparent" }}>
+                                <thead className="text-white border-secondary">
+                                    <tr>
+                                        <th scope="col">S.no</th>
+                                        <th scope="col" className="text-center">Image</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email & Phone</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col" className="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="border-secondary">
+                                    {loading ? (
+                                        <tr>
+                                            <td colSpan="7" className="text-center py-5">
+                                                <PulseLoader color="#ffffff" loading={loading} cssOverride={override} size={20} />
+                                            </td>
+                                        </tr>
+                                    ) : users.length === 0 ? (
+                                        <tr>
+                                            <td colSpan="7" className="text-center py-5 text-muted">No users found.</td>
+                                        </tr>
+                                    ) : (
+                                        users.map((user, index) => (
+                                            <tr key={user.id}>
+                                                <td>{index + 1}</td>
+                                                <td className="text-center">
+                                                    {user.profileImage ? (
+                                                        <a href={user.profileImage} target="_blank" rel="noreferrer">
+                                                            <img src={user.profileImage} style={{ height: "50px", width: "50px", borderRadius: "50%", objectFit: "cover" }} alt={user.name} />
+                                                        </a>
+                                                    ) : (
+                                                        <div className="bg-secondary rounded-circle d-inline-flex align-items-center justify-content-center" style={{ height: "50px", width: "50px" }}>
+                                                            <i className="bi bi-person text-white fs-4"></i>
+                                                        </div>
+                                                    )}
+                                                </td>
+                                                <td><strong>{user.name}</strong></td>
+                                                <td>
+                                                    {user.email}<br />
+                                                    <small className="text-secondary">{user.phone}</small>
+                                                </td>
+                                                <td>{user.address}</td>
+                                                <td>
+                                                    <span className={`badge ${user.status ? 'bg-success' : 'bg-danger'}`}>
+                                                        {user.status ? "Active" : "Blocked"}
+                                                    </span>
+                                                </td>
+                                                <td className="text-center">
+                                                    {user.status ? (
+                                                        <button className="btn btn-sm btn-outline-danger" onClick={() => handleStatusChange(user.id, user.status)}>
+                                                            Block
+                                                        </button>
+                                                    ) : (
+                                                        <button className="btn btn-sm btn-success" onClick={() => handleStatusChange(user.id, user.status)}>
+                                                            Unblock
+                                                        </button>
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))
+                                    )}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-            {/* Contact End */}
         </>
-
-
-    )
+    );
 }
-
-

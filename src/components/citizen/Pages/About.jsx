@@ -2,278 +2,63 @@ import { Link } from "react-router-dom";
 
 export default function About() {
   return (
-
-
     <>
-      {/* Page Title */}
-      <div className="page-title">
-        <div className="heading">
-          <div className="container">
-            <div className="row d-flex justify-content-center text-center">
-              <div className="col-lg-8">
-                <h1>About WardPulse</h1>
-                <h2>Connecting Citizens with Municipal Services</h2>
-                <p className="mb-0">
-                  WardPulse is a smart municipal complaint management platform designed to simplify the way citizens report and track civic issues. Whether it's potholes, garbage collection, water leakage, damaged roads, or faulty streetlights, WardPulse enables residents to submit complaints quickly and monitor their progress in real time.
-                  <br />
-
-                </p>
-                <span>
-
-                  🎯 Our Mission
-                  <br />
-                  To empower citizens by providing a transparent and efficient platform for reporting civic issues while helping municipalities deliver faster and more effective public services.
-                </span>
-                <span>
-
-                  👁️ Our Vision
-                  <br />
-                  To build smart, connected cities where every citizen's voice contributes to better governance and improved quality of life.
-                </span>
-                <Link to="/form" className="cta-btn">
-                  register your complaint
-                  <br />
-                </Link>
-              </div>
-            </div>
+      {/* Title Banner */}
+      <div className="container py-5 mt-4 border-bottom border-secondary">
+        <div className="row d-flex justify-content-center text-center">
+          <div className="col-lg-8">
+            <h1 className="fw-bold text-uppercase mb-3 text-white" style={{ letterSpacing: "1.5px" }}>About WardPulse</h1>
+            <p className="mb-0 text-secondary fs-5" style={{ lineHeight: "1.6" }}>
+              Connecting Citizens with Municipal Services for a cleaner, smarter, and more responsive city.
+            </p>
           </div>
         </div>
-        <nav className="breadcrumbs">
-          <div className="container">
-            <ol>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li className="current">About</li>
-            </ol>
-          </div>
-        </nav>
       </div>
-      {/* End Page Title */}
 
-
-      {/* About Section */}
-      <section id="about" className="about section">
-        <div className="container" >
-          <div className="row gy-4 justify-content-center">
-            <div className="col-lg-4">
-             
-            <img src="/assets/img/main.jpg" className="img-fluid" alt="" />
-            </div>
-            <div className="col-lg-5 content">
-              <h2>
-                Empowering Citizens Through Smart Civic Services.
-              </h2>
-              <h5 className="fst-italic py-3">
-                WardPulse is a digital civic engagement platform designed to simplify communication between citizens and municipal authorities. Report civic issues, track complaint status, receive important announcements, and contribute to building a cleaner, safer, and smarter community—all in one place.
-              </h5>
-              <div className="row">
-                <div className="col-lg-6">
-                  <ul>
-                    <li>
-                      <i className="bi bi-chevron-right" />{" "}
-                      <strong>Platform:</strong> <span>WardPulse</span>
-                    </li>
-                    <li>
-                      <i className="bi bi-chevron-right" />{" "}
-                      <strong>Coverage:</strong> <span>Ward Wise Services</span>
-                    </li>
-
-                  </ul>
-                </div>
-                <div className="col-lg-6">
-                  <ul>
-                    <li>
-                      <i className="bi bi-chevron-right" /> <strong>Easy Access:</strong>{" "}
-                      <span>24/7</span>
-                    </li>
-                    <li>
-                      <i className="bi bi-chevron-right" /> <strong>Cities covered:</strong>{" "}
-                      <span>Multiple</span>
-                    </li>
-
-                  </ul>
+      {/* Main Content */}
+      <div className="container py-5 my-3">
+        <div className="row align-items-center gy-5">
+          <div className="col-lg-5 text-center text-lg-start">
+            <img src="/assets/img/main.jpg" alt="About WardPulse" className="img-fluid rounded shadow-lg border border-secondary" style={{ maxHeight: "400px", objectFit: "cover" }} />
+          </div>
+          <div className="col-lg-7 px-lg-5">
+            <h2 className="fw-bold text-white mb-4">
+              Empowering Citizens Through <span className="text-success">Smart Civic Services.</span>
+            </h2>
+            <p className="text-secondary fs-5 mb-4" style={{ lineHeight: "1.8" }}>
+              WardPulse is a digital civic engagement platform designed to simplify communication between citizens and municipal authorities. 
+              Report civic issues, track complaint status, and contribute to building a cleaner, safer, and smarter community—all in one centralized portal.
+            </p>
+            
+            <div className="row mt-5">
+              <div className="col-md-6 mb-4">
+                <div className="card bg-transparent border-secondary h-100 p-4 shadow-sm text-center">
+                  <i className="bi bi-bullseye text-success mb-3" style={{ fontSize: "2rem" }}></i>
+                  <h4 className="text-white">Our Mission</h4>
+                  <p className="text-secondary mb-0">To empower citizens by providing a transparent and efficient platform for reporting civic issues and helping municipalities deliver faster services.</p>
                 </div>
               </div>
-              <p className="py-3">
-                WardPulse enables residents to report issues such as damaged roads, water supply problems, sanitation concerns, drainage blockages, streetlight failures, and waste management issues. Complaints are categorized and routed to the appropriate municipal department, ensuring a streamlined and transparent resolution process.
-              </p>
-              <p className="m-0">
-                The platform also keeps citizens informed through municipal announcements, service updates, and public notices. With a secure and user-friendly interface, WardPulse promotes transparency, accountability, and active citizen participation while helping local authorities manage civic services more efficiently.
-              </p>
+              <div className="col-md-6 mb-4">
+                <div className="card bg-transparent border-secondary h-100 p-4 shadow-sm text-center">
+                  <i className="bi bi-eye text-success mb-3" style={{ fontSize: "2rem" }}></i>
+                  <h4 className="text-white">Our Vision</h4>
+                  <p className="text-secondary mb-0">To build smart, connected cities where every citizen's voice contributes to better governance and improved quality of life.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </section>
-      {/* /About Section */}
-      {/* Testimonials Section */}
-      <section id="testimonials" className="testimonials section">
-        {/* Section Title */}
-        <div className="container section-title">
-          <h2>Testimonials</h2>
-          <p>What they are saying</p>
-        </div>
-        {/* End Section Title */}
-        <div className="container">
-          <div className="swiper init-swiper">
-            <div className="swiper-wrapper">
-              <div className="swiper-slide">
-                <div className="row">
-                 
-                  <div className="col md-4">
-                    <div className="card" style={{ width: "18rem" }}>
-                      <img src="/assets/img/testimonials/testimonials-3.jpg" className="card-img-top" alt="..." />
-                      <div className="card-body">
-                        <h5 className="card-title">Kriti</h5>
-                        <p className="card-text">
-                          "Being able to upload photos with my complaint helped explain the issue clearly. The tracking feature gives confidence that the complaint has been received."
-                        </p>
 
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col md-4">
-                    <div className="card" style={{ width: "18rem" }}>
-                      <img src="/assets/img/testimonials/testimonials-3.jpg" className="card-img-top" alt="..." />
-                      <div className="card-body">
-                        <h5 className="card-title">Kriti</h5>
-                        <p className="card-text">
-                          "Being able to upload photos with my complaint helped explain the issue clearly. The tracking feature gives confidence that the complaint has been received."
-                        </p>
-
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col md-4">
-                    <div className="card" style={{ width: "18rem" }}>
-                      <img src="/assets/img/testimonials/testimonials-3.jpg" className="card-img-top" alt="..." />
-                      <div className="card-body">
-                        <h5 className="card-title">Kriti</h5>
-                        <p className="card-text">
-"I liked receiving updates on my complaint status. The process feels transparent and keeps citizens informed every step of the way."
-                        </p>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              {/* End testimonial item */}
-              <div className="swiper-slide">
-                <div className="testimonial-item">
-                  <div className="stars">
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                  </div>
-                  <p>
-                    Export tempor illum tamen malis malis eram quae irure esse
-                    labore quem cillum quid cillum eram malis quorum velit fore eram
-                    velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                  </p>
-                  <div className="profile mt-auto">
-                    <img
-                      src="/assets/img/testimonials/testimonials-2.jpg"
-                      className="testimonial-img"
-                      alt=""
-                    />
-                    <h3>Sara Wilsson</h3>
-                    <h4>Designer</h4>
-                  </div>
-                </div>
-              </div>
-              {/* End testimonial item */}
-              <div className="swiper-slide">
-                <div className="testimonial-item">
-                  <div className="stars">
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                  </div>
-                  <p>
-                    Enim nisi quem export duis labore cillum quae magna enim sint
-                    quorum nulla quem veniam duis minim tempor labore quem eram duis
-                    noster aute amet eram fore quis sint minim.
-                  </p>
-                  <div className="profile mt-auto">
-                    <img
-                      src="/assets/img/testimonials/testimonials-3.jpg"
-                      className="testimonial-img"
-                      alt=""
-                    />
-                    <h3>Jena Karlis</h3>
-                    <h4>Store Owner</h4>
-                  </div>
-                </div>
-              </div>
-              {/* End testimonial item */}
-              <div className="swiper-slide">
-                <div className="testimonial-item">
-                  <div className="stars">
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                  </div>
-                  <p>
-                    Fugiat enim eram quae cillum dolore dolor amet nulla culpa
-                    multos export minim fugiat minim velit minim dolor enim duis
-                    veniam ipsum anim magna sunt elit fore quem dolore labore illum
-                    veniam.
-                  </p>
-                  <div className="profile mt-auto">
-                    <img
-                      src="assets/img/testimonials/testimonials-4.jpg"
-                      className="testimonial-img"
-                      alt=""
-                    />
-                    <h3>Matt Brandon</h3>
-                    <h4>Freelancer</h4>
-                  </div>
-                </div>
-              </div>
-              {/* End testimonial item */}
-              <div className="swiper-slide">
-                <div className="testimonial-item">
-                  <div className="stars">
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                  </div>
-                  <p>
-                    Quis quorum aliqua sint quem legam fore sunt eram irure aliqua
-                    veniam tempor noster veniam enim culpa labore duis sunt culpa
-                    nulla illum cillum fugiat legam esse veniam culpa fore nisi
-                    cillum quid.
-                  </p>
-                  <div className="profile mt-auto">
-                    <img
-                      src="assets/img/testimonials/testimonials-5.jpg"
-                      className="testimonial-img"
-                      alt=""
-                    />
-                    <h3>John Larson</h3>
-                    <h4>Entrepreneur</h4>
-                  </div>
-                </div>
-              </div>
-              {/* End testimonial item */}
-            </div>
-            <div className="swiper-pagination" />
+        {/* Call to Action */}
+        <div className="row justify-content-center mt-5 pt-4 text-center">
+          <div className="col-lg-8">
+            <h3 className="text-white mb-4">Ready to make a difference in your ward?</h3>
+            <Link to="/category" className="btn btn-success px-5 py-3 fw-bold fs-5 shadow-lg" style={{ borderRadius: "30px" }}>
+              Register Your Complaint Now <i className="bi bi-arrow-right ms-2"></i>
+            </Link>
           </div>
         </div>
-      </section>
-
-      {/* /Testimonials Section */}
-
+      </div>
     </>
-  )
+  );
 }

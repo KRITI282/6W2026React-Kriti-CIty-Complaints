@@ -1,29 +1,45 @@
-import { collection, addDoc, getDocs, doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, getDoc, updateDoc, deleteDoc, query, where } from "firebase/firestore";
 import { City } from "../Models/City";
 import { db } from "../Firebase";
-const dbPath = "cities"
 import { toast } from "react-toastify";
 
+const dbPath = "cities"
 class CityService {
+
     async add(data) {
-        // console.log(data);
         const newCity = new City()
         newCity.name = data.name
-        newCity. imageUrl = data.imageUrl
- 
+        newCity.imageUrl = data.imageUrl
+
         const docRef = await addDoc(collection(db, dbPath), {
             ...newCity
         })
         return newCity
     }
 
-    async all() {
-        const querySnapshot = await getDocs(collection(db, dbPath));
-        var categories = []
-        querySnapshot.forEach((doc) => {
-            categories.push({ id: doc.id, ...doc.data() })
-        });
-        return categories;
+
+    async all(payload) {
+        try {
+            let q = collection(db, dbPath);
+            if (payload) {
+                for (let key in payload) {
+                    let value = payload[key];
+                    if (value) {
+                        q = query(q, where(key, "==", value));
+                    }
+                }
+            }
+            const querySnapshot = await getDocs(q);
+            const cities = [];
+            querySnapshot.forEach((doc) => {
+                cities.push({ id: doc.id, ...doc.data() });
+            });
+            return cities;
+        } catch (error) {
+            console.error("Error fetching cities: ", error);
+            toast.error("Failed to fetch cities!");
+            return [];
+        }
     }
 
 
@@ -32,7 +48,6 @@ class CityService {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             return { id: docSnap.id, ...docSnap.data() }
-
         } else {
             toast.error("No such document!");
             console.log("No such document!");
@@ -49,7 +64,4 @@ class CityService {
     }
 }
 
-
-
 export default new CityService()
-

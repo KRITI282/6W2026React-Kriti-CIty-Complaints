@@ -6,10 +6,8 @@ import { ThemeProvider } from './context/ThemeContext';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)reactDOM.createRoot(document.getElementById('root')).render(
     <ThemeProvider>
-        <App />
+      <App />
     </ThemeProvider>
+  </StrictMode>
 );
