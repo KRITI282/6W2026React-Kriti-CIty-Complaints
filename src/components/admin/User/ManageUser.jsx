@@ -22,7 +22,7 @@ export default function ManageUser() {
     async function getAllUsers() {
         setLoading(true)
         try {
-            // Only fetch citizens
+         
             const data = await UserService.all({ userType: 'user' });
             setUsers(data);
         } catch (error) {

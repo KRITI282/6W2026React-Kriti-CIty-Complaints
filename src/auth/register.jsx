@@ -17,7 +17,7 @@ export default function Register() {
       setLoading(true);
       let payload = {
         name: name,
-        contact: contact,
+        phone: contact,
         email: email,
         password: password
       };
