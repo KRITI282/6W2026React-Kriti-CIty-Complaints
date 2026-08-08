@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import ThemeButton from "./ThemeButton";
+
 import AuthService from "../../../Services/AuthService";
 import { toast } from "react-toastify";
 
@@ -70,9 +70,6 @@ export default function CitizenHeader() {
                 </>
               )}
 
-              <li>
-                <ThemeButton />
-              </li>
             </ul>
             <i className="mobile-nav-toggle d-xl-none bi bi-list" />
           </nav>
